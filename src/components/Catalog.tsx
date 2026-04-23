@@ -128,7 +128,7 @@ export const Catalog = () => {
                 {p.tag}
               </div>
 
-              <div className="aspect-square bg-brand-light relative overflow-hidden">
+              <div className="aspect-[4/3] sm:aspect-square bg-brand-light relative overflow-hidden">
                 <img
                   src={p.image}
                   alt={`${p.name} — bicicleta elétrica Filadelfo Motors`}
@@ -139,7 +139,7 @@ export const Catalog = () => {
                 />
               </div>
 
-              <div className="p-5 md:p-6">
+              <div className="p-4 sm:p-5 md:p-6">
                 <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
 
                 <div className="mt-3 md:mt-4 grid grid-cols-3 gap-1.5 sm:gap-2 py-3 md:py-4 border-y border-border">
@@ -148,7 +148,7 @@ export const Catalog = () => {
                       <div className="text-[9px] tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground">
                         {k}
                       </div>
-                      <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-0.5 break-words">{v}</div>
+                      <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-0.5 break-words leading-tight">{v}</div>
                     </div>
                   ))}
                 </div>
@@ -158,7 +158,7 @@ export const Catalog = () => {
                     <div className="text-[10px] tracking-widest uppercase text-muted-foreground">
                       A partir de
                     </div>
-                    <div className="font-display text-xl md:text-2xl">R$ {p.price}</div>
+                    <div className="font-display text-[1.35rem] md:text-2xl leading-none">R$ {p.price}</div>
                     <div className="text-[10px] md:text-xs text-muted-foreground truncate">
                       {p.parcel}
                     </div>
