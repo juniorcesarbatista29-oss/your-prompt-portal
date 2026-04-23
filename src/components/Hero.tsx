@@ -38,16 +38,11 @@ export const Hero = () => {
           <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.75rem,13vw,8rem)] leading-[0.95] sm:leading-[0.85] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
               <span className="block animate-hero-line" style={{ animationDelay: "0.05s" }}>
-                Energia
+                Energia que <span className="text-brand-red">move</span>
               </span>
             </span>
             <span className="block overflow-hidden">
-              <span className="block animate-hero-line" style={{ animationDelay: "0.2s" }}>
-                que <span className="text-brand-red">move</span>
-              </span>
-            </span>
-            <span className="block overflow-hidden">
-              <span className="block animate-hero-line" style={{ animationDelay: "0.35s" }}>
+              <span className="block animate-hero-line text-center" style={{ animationDelay: "0.2s" }}>
                 cidades.
               </span>
             </span>
