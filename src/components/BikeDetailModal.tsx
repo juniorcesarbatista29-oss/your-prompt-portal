@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Battery, Gauge, Zap, X, MessageCircle, Play } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Drawer, DrawerContent, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -36,7 +36,8 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
   const active = gallery[Math.min(activeIdx, gallery.length - 1)];
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="grid h-full gap-5 md:grid-cols-[minmax(0,1fr)_minmax(22rem,0.86fr)] md:items-start md:gap-7">
+      <div className="min-w-0">
       <div className="relative aspect-[4/3] sm:aspect-square bg-brand-light overflow-hidden rounded-md">
         {bike.badge && (
           <span className="absolute top-3 left-3 z-10 bg-brand-red text-primary-foreground text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-sm">
@@ -73,8 +74,9 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
       {active.caption && (
         <p className="mt-2 text-xs text-muted-foreground italic px-1">{active.caption}</p>
       )}
+      </div>
 
-      <div className="px-1 mt-5 md:mt-6">
+      <div className="min-w-0 px-1 md:px-0">
         <h3 className="font-display text-2xl md:text-3xl uppercase">{bike.name}</h3>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           {bike.description ??
