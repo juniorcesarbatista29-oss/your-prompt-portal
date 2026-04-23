@@ -15,11 +15,17 @@ export const Footer = () => (
             Bicicletas elétricas premium para uma nova era da mobilidade urbana.
           </p>
           <div className="mt-5 flex gap-3">
-            {[Instagram, Facebook, Youtube].map((Icon, i) => (
+            {[
+              { Icon: Instagram, href: "https://www.instagram.com/filadelfomotors/", label: "Instagram" },
+              { Icon: Facebook, href: "#", label: "Facebook" },
+              { Icon: Youtube, href: "#", label: "YouTube" },
+            ].map(({ Icon, href, label }) => (
               <a
-                key={i}
-                href="#"
-                aria-label="Rede social"
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                aria-label={label}
                 className="size-9 sm:size-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:bg-brand-red hover:border-brand-red hover:text-primary-foreground transition-all"
               >
                 <Icon className="size-4" />
