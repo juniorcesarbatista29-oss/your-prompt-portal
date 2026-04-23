@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Battery, Gauge, Zap, X, MessageCircle, Play } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Drawer, DrawerContent, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -36,7 +36,8 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
   const active = gallery[Math.min(activeIdx, gallery.length - 1)];
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="grid h-full gap-5 md:grid-cols-[minmax(0,1fr)_minmax(22rem,0.86fr)] md:items-start md:gap-7">
+      <div className="min-w-0">
       <div className="relative aspect-[4/3] sm:aspect-square bg-brand-light overflow-hidden rounded-md">
         {bike.badge && (
           <span className="absolute top-3 left-3 z-10 bg-brand-red text-primary-foreground text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-sm">
@@ -73,8 +74,9 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
       {active.caption && (
         <p className="mt-2 text-xs text-muted-foreground italic px-1">{active.caption}</p>
       )}
+      </div>
 
-      <div className="px-1 mt-5 md:mt-6">
+      <div className="min-w-0 px-1 md:px-0">
         <h3 className="font-display text-2xl md:text-3xl uppercase">{bike.name}</h3>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           {bike.description ??
@@ -141,12 +143,21 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="max-h-[92svh]">
+        <DrawerContent className="max-h-[92svh] rounded-t-lg">
           <DrawerTitle className="sr-only">{bike.name}</DrawerTitle>
           <DrawerDescription className="sr-only">
             Detalhes da bicicleta elétrica {bike.name}
           </DrawerDescription>
-          <div className="overflow-y-auto px-4 pb-8 pt-2">
+          <DrawerClose asChild>
+            <button
+              type="button"
+              aria-label="Fechar"
+              className="absolute right-4 top-4 z-20 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center text-foreground shadow-soft transition-all hover:bg-foreground hover:text-background"
+            >
+              <X className="size-4" />
+            </button>
+          </DrawerClose>
+          <div className="overflow-y-auto px-4 pb-8 pt-8">
             <SpecsAndCTA bike={bike} />
           </div>
         </DrawerContent>
@@ -157,7 +168,7 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-lg p-6 max-h-[90vh] overflow-y-auto"
+        className="max-w-5xl p-5 md:p-7 max-h-[88vh] overflow-y-auto"
         onPointerDownOutside={(e) => e.preventDefault()}
         onInteractOutside={(e) => e.preventDefault()}
       >
@@ -168,7 +179,7 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
         <button
           onClick={() => onOpenChange(false)}
           aria-label="Fechar"
-          className="absolute right-4 top-4 z-10 size-8 rounded-full bg-background/80 border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all"
+          className="absolute right-4 top-4 z-20 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center shadow-soft hover:bg-foreground hover:text-background transition-all"
         >
           <X className="size-4" />
         </button>
