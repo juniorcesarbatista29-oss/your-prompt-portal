@@ -30,7 +30,7 @@ export const Hero = () => {
       </div>
 
       <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-8 md:gap-8 items-center px-4">
-        <div className="md:col-span-12 animate-fade-up text-center">
+        <div className="md:col-span-12 animate-fade-up text-center pt-9 sm:pt-0">
           <span className="text-xs sm:text-sm tracking-[0.34em] sm:tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Coleção 2026
           </span>
