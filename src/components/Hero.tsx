@@ -53,14 +53,11 @@ export const Hero = () => {
             design ou liberdade.
           </p>
 
-          <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center sm:justify-center gap-3 sm:gap-4">
+          <div className="mt-8 md:mt-10 flex justify-center">
             <Button asChild variant="hero" size="xl" className="w-full sm:w-auto px-4 whitespace-normal text-center leading-snug">
               <Link to="/catalogo">
                 Ver catálogo <ArrowRight />
               </Link>
-            </Button>
-            <Button variant="outlineHero" size="xl" className="w-full sm:w-auto px-4 whitespace-normal text-center leading-snug">
-              Simular financiamento
             </Button>
           </div>
         </div>
