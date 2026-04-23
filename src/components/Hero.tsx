@@ -35,9 +35,9 @@ export const Hero = () => {
             Coleção 2026
           </span>
 
-          <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.25rem,11vw,7rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.95] sm:leading-[0.88] uppercase tracking-tight text-foreground">
+          <h1 className="mt-4 md:mt-5 font-display text-[clamp(1.9rem,9.4vw,7rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.95] sm:leading-[0.88] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
-              <span className="block whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
+              <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
                 Energia que <span className="text-brand-red">move</span>
               </span>
             </span>
@@ -54,12 +54,12 @@ export const Hero = () => {
           </p>
 
           <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center sm:justify-center gap-3 sm:gap-4">
-            <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
+            <Button asChild variant="hero" size="xl" className="w-full sm:w-auto px-4 whitespace-normal text-center leading-snug">
               <Link to="/catalogo">
                 Ver catálogo <ArrowRight />
               </Link>
             </Button>
-            <Button variant="outlineHero" size="xl" className="w-full sm:w-auto">
+            <Button variant="outlineHero" size="xl" className="w-full sm:w-auto px-4 whitespace-normal text-center leading-snug">
               Simular financiamento
             </Button>
           </div>
