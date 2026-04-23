@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] supports-[height:100dvh]:min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-20 overflow-hidden bg-background"
+      className="relative min-h-0 md:min-h-[100svh] md:supports-[height:100dvh]:min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-background"
     >
       {/* Background bike — clean automotive composition */}
       <div className="absolute inset-0 z-0 overflow-hidden">
