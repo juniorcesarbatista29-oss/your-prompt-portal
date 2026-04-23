@@ -143,12 +143,21 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="max-h-[92svh]">
+        <DrawerContent className="max-h-[92svh] rounded-t-lg">
           <DrawerTitle className="sr-only">{bike.name}</DrawerTitle>
           <DrawerDescription className="sr-only">
             Detalhes da bicicleta elétrica {bike.name}
           </DrawerDescription>
-          <div className="overflow-y-auto px-4 pb-8 pt-2">
+          <DrawerClose asChild>
+            <button
+              type="button"
+              aria-label="Fechar"
+              className="absolute right-4 top-4 z-20 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center text-foreground shadow-soft transition-all hover:bg-foreground hover:text-background"
+            >
+              <X className="size-4" />
+            </button>
+          </DrawerClose>
+          <div className="overflow-y-auto px-4 pb-8 pt-8">
             <SpecsAndCTA bike={bike} />
           </div>
         </DrawerContent>
@@ -159,7 +168,7 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-lg p-6 max-h-[90vh] overflow-y-auto"
+        className="max-w-5xl p-5 md:p-7 max-h-[88vh] overflow-y-auto"
         onPointerDownOutside={(e) => e.preventDefault()}
         onInteractOutside={(e) => e.preventDefault()}
       >
@@ -170,7 +179,7 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
         <button
           onClick={() => onOpenChange(false)}
           aria-label="Fechar"
-          className="absolute right-4 top-4 z-10 size-8 rounded-full bg-background/80 border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all"
+          className="absolute right-4 top-4 z-20 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center shadow-soft hover:bg-foreground hover:text-background transition-all"
         >
           <X className="size-4" />
         </button>
