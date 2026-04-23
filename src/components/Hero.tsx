@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] supports-[height:100dvh]:min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-background"
+      className="relative min-h-[100svh] supports-[height:100dvh]:min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-20 overflow-hidden bg-background"
     >
       {/* Background bike — clean automotive composition */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -35,9 +35,9 @@ export const Hero = () => {
             Coleção 2026
           </span>
 
-          <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.95] sm:leading-[0.88] uppercase tracking-tight text-foreground">
+          <h1 className="mt-4 md:mt-5 font-display text-[clamp(1.9rem,9.4vw,7rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.95] sm:leading-[0.88] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
-              <span className="block whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
+              <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
                 Energia que <span className="text-brand-red">move</span>
               </span>
             </span>
@@ -48,18 +48,18 @@ export const Hero = () => {
             </span>
           </h1>
 
-          <p className="mt-6 md:mt-8 mx-auto max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-6 md:mt-8 mx-auto max-w-[22rem] md:max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
             Bicicletas elétricas premium para quem não negocia performance,
             design ou liberdade.
           </p>
 
           <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center sm:justify-center gap-3 sm:gap-4">
-            <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
+            <Button asChild variant="hero" size="xl" className="w-full sm:w-auto px-4 whitespace-normal text-center leading-snug">
               <Link to="/catalogo">
                 Ver catálogo <ArrowRight />
               </Link>
             </Button>
-            <Button variant="outlineHero" size="xl" className="w-full sm:w-auto">
+            <Button variant="outlineHero" size="xl" className="w-full sm:w-auto px-4 whitespace-normal text-center leading-snug">
               Simular financiamento
             </Button>
           </div>
