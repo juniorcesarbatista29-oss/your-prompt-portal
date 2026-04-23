@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] supports-[height:100dvh]:min-h-[100dvh] flex items-end pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-background"
+      className="relative min-h-[100svh] supports-[height:100dvh]:min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-background"
     >
       {/* Background bike — clean automotive composition */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -29,8 +29,8 @@ export const Hero = () => {
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background via-background/80 to-transparent md:hidden" />
       </div>
 
-      <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-8 md:gap-8 items-end px-4">
-        <div className="md:col-span-12 animate-fade-up">
+      <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-8 md:gap-8 items-center px-4">
+        <div className="md:col-span-12 animate-fade-up text-center">
           <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Coleção 2026
           </span>
@@ -53,12 +53,12 @@ export const Hero = () => {
             </span>
           </h1>
 
-          <p className="mt-6 md:mt-8 max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-6 md:mt-8 mx-auto max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
             Bicicletas elétricas premium para quem não negocia performance,
             design ou liberdade.
           </p>
 
-          <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+          <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center sm:justify-center gap-3 sm:gap-4">
             <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
               <Link to="/catalogo">
                 Ver catálogo <ArrowRight />
