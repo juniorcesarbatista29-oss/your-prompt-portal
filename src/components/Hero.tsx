@@ -31,11 +31,11 @@ export const Hero = () => {
 
       <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-8 md:gap-8 items-center px-4">
         <div className="md:col-span-12 animate-fade-up text-center">
-          <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
+          <span className="text-xs sm:text-sm tracking-[0.34em] sm:tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Coleção 2026
           </span>
 
-          <h1 className="mt-4 md:mt-5 font-display text-[clamp(1.9rem,9.4vw,7rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.95] sm:leading-[0.88] uppercase tracking-tight text-foreground">
+          <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.15rem,10.8vw,7rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.9] sm:leading-[0.88] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
               <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
                 Energia que <span className="text-brand-red">move</span>
