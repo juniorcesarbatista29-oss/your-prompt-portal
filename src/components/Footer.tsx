@@ -8,7 +8,7 @@ export const Footer = () => (
     style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom))" }}
   >
     <div className="container mx-auto px-4">
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10 pb-12 md:pb-16 border-b border-border">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-12 gap-x-5 gap-y-9 pb-10 md:pb-16 border-b border-border">
         <div className="col-span-2 md:col-span-4">
           <Logo />
           <p className="mt-4 text-sm text-muted-foreground max-w-xs leading-relaxed">
@@ -65,7 +65,7 @@ export const Footer = () => (
           <ul className="space-y-3 text-sm text-foreground/80">
             <li className="flex items-start gap-3">
               <MapPin className="size-4 text-foreground/60 shrink-0 mt-0.5" />
-              <span>Av. Da Saudade — Novo Horizonte, SP</span>
+              <span className="leading-snug">Av. Da Saudade — Novo Horizonte, SP</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="size-4 text-foreground/60 shrink-0" />
@@ -81,9 +81,9 @@ export const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-6 md:pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4 text-xs text-muted-foreground">
+      <div className="pt-6 md:pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-muted-foreground">
         <span className="leading-relaxed">© {new Date().getFullYear()} Filadelfo Motors. Todos os direitos reservados.</span>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 md:gap-6">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-5 md:gap-6">
           <a href="#" className="hover:text-brand-red transition-colors">Política de Privacidade</a>
           <a href="#" className="hover:text-brand-red transition-colors">Termos de Uso</a>
         </div>
