@@ -37,7 +37,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="relative aspect-square bg-brand-light overflow-hidden rounded-md">
+      <div className="relative aspect-[4/3] sm:aspect-square bg-brand-light overflow-hidden rounded-md">
         {bike.badge && (
           <span className="absolute top-3 left-3 z-10 bg-brand-red text-primary-foreground text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-sm">
             {bike.badge}
@@ -81,7 +81,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
             `A ${bike.name} foi projetada para entregar performance, autonomia e design. Componentes premium, motor brushless e bateria de lítio certificada.`}
         </p>
 
-        <div className="mt-5 grid grid-cols-3 gap-3 py-4 border-y border-border">
+        <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3 py-4 border-y border-border">
           {[
             { icon: Battery, label: "Autonomia", value: bike.specs.autonomia },
             { icon: Zap, label: "Motor", value: bike.specs.motor },
@@ -92,19 +92,19 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
               <span className="text-[9px] tracking-widest uppercase text-muted-foreground">
                 {label}
               </span>
-              <span className="font-display text-lg md:text-xl mt-0.5">{value}</span>
+              <span className="font-display text-base sm:text-lg md:text-xl mt-0.5 leading-tight break-words">{value}</span>
             </div>
           ))}
         </div>
 
-        <div className="mt-5 flex items-baseline justify-between gap-3">
+        <div className="mt-5 flex flex-col xs:flex-row xs:items-baseline xs:justify-between gap-2 xs:gap-3">
           <div>
             <div className="text-[10px] tracking-widest uppercase text-muted-foreground">
               A partir de
             </div>
             <div className="font-display text-3xl md:text-4xl">R$ {bike.price}</div>
           </div>
-          <div className="text-right text-xs text-muted-foreground">
+          <div className="xs:text-right text-xs text-muted-foreground">
             ou em até <strong className="text-foreground font-semibold">24x no cartão</strong>
           </div>
         </div>
@@ -112,7 +112,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
         <a href={waUrl} target="_blank" rel="noopener noreferrer" className="block mt-6">
           <Button
             size="xl"
-            className="w-full bg-[#25D366] hover:bg-[#1fb755] text-white uppercase tracking-widest font-semibold"
+            className="w-full bg-[#25D366] hover:bg-[#1fb755] text-white uppercase tracking-widest font-semibold whitespace-normal text-center leading-snug"
           >
             <MessageCircle className="size-5" />
             Comprar pelo WhatsApp
