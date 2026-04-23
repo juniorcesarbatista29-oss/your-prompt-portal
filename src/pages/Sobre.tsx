@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
-import sobreHero from "@/assets/sobre-hero.jpg";
+import sobreHero from "@/assets/sobre-hero.webp";
 
 const Sobre = () => {
   return (
