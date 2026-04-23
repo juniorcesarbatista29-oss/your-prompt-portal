@@ -35,14 +35,14 @@ export const Hero = () => {
             Coleção 2026
           </span>
 
-          <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.75rem,13vw,8rem)] leading-[0.95] sm:leading-[0.85] uppercase tracking-tight text-foreground">
+          <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.95] sm:leading-[0.88] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
-              <span className="block animate-hero-line" style={{ animationDelay: "0.05s" }}>
+              <span className="block whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
                 Energia que <span className="text-brand-red">move</span>
               </span>
             </span>
             <span className="block overflow-hidden">
-              <span className="block animate-hero-line text-center" style={{ animationDelay: "0.2s" }}>
+              <span className="block animate-hero-line" style={{ animationDelay: "0.28s" }}>
                 cidades.
               </span>
             </span>
