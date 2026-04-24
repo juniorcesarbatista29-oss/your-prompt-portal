@@ -12,6 +12,14 @@ const Index = () => {
   useCanonical("/");
   useEffect(() => {
     document.title = "Filadelfo Motors | Bicicletas Elétricas Premium | Mobilidade Urbana Sustentável";
+    const desc = "Descubra as bicicletas elétricas premium da Filadelfo Motors. Performance, design e liberdade para a mobilidade urbana sustentável. Frete grátis e parcelamento em até 24x.";
+    let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "description");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", desc);
   }, []);
   return (
     <PageTransition>
