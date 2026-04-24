@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
@@ -7,6 +8,9 @@ import sobreHero from "@/assets/sobre-hero.webp";
 
 const Sobre = () => {
   useCanonical("/sobre");
+  useEffect(() => {
+    document.title = "Sobre a Filadelfo Motors | Propósito, Qualidade e Sustentabilidade";
+  }, []);
   return (
     <PageTransition>
       <main className="min-h-screen bg-background text-foreground">
