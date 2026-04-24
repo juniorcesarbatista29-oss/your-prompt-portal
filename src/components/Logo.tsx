@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/filadelfo-logo.png";
+import logo from "@/assets/filadelfo-logo.webp";
 
 type LogoProps = {
   className?: string;

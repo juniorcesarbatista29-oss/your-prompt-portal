@@ -9,6 +9,7 @@ import bikeMtb from "@/assets/bike-mtb.jpg";
 import bikeFold from "@/assets/bike-fold.jpg";
 import { BikeDetailModal, type Bike } from "./BikeDetailModal";
 import { fetchActiveBikes, queryKeys } from "@/lib/queries";
+import { buildBikeAlt } from "@/lib/bike-alt";
 
 const fallbackProducts: Bike[] = [
   {
@@ -131,7 +132,7 @@ export const Catalog = () => {
               <div className="aspect-[4/3] sm:aspect-square bg-brand-light relative overflow-hidden">
                 <img
                   src={p.image}
-                  alt={`${p.name} — bicicleta elétrica Filadelfo Motors`}
+                  alt={buildBikeAlt(p)}
                   width={1024}
                   height={1024}
                   loading="lazy"

@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { buildBikeAlt } from "@/lib/bike-alt";
 
 export type Bike = {
   name: string;
@@ -49,7 +50,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
         </span>
         <img
           src={active.url}
-          alt={`${bike.name} — bicicleta elétrica Filadelfo Motors`}
+          alt={buildBikeAlt(bike)}
           className="w-full h-full object-contain p-4"
           loading="eager"
         />
@@ -66,7 +67,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
                 i === activeIdx ? "border-brand-red" : "border-border"
               }`}
             >
-              <img src={g.url} alt="" className="w-full h-full object-contain" />
+              <img src={g.url} alt={g.caption ?? `${bike.name} — foto ${i + 1}`} className="w-full h-full object-contain" />
             </button>
           ))}
         </div>
