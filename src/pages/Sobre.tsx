@@ -2,9 +2,11 @@ import { Header } from "@/components/Header";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
+import { useCanonical } from "@/hooks/useCanonical";
 import sobreHero from "@/assets/sobre-hero.webp";
 
 const Sobre = () => {
+  useCanonical("/sobre");
   return (
     <PageTransition>
       <main className="min-h-screen bg-background text-foreground">
