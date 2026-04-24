@@ -215,7 +215,7 @@ const AdminOffers = () => {
               <Label>Imagem (opcional)</Label>
               <div className="flex items-center gap-3 mt-1.5">
                 {editing.image_url && (
-                  <img src={editing.image_url} alt="" className="size-20 object-contain bg-brand-light rounded" />
+                  <img src={editing.image_url} alt={`Imagem da oferta ${editing.title || ""}`.trim()} className="size-20 object-contain bg-brand-light rounded" />
                 )}
                 <label className="cursor-pointer">
                   <input
