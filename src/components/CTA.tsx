@@ -32,7 +32,7 @@ export const CTA = () => (
         className="mt-8 md:mt-10 bg-foreground text-background hover:bg-background hover:text-foreground transition-all uppercase tracking-widest font-semibold w-full sm:w-auto whitespace-normal text-center leading-snug"
       >
         <a
-          href="https://wa.me/5517992155535?text=Ol%C3%A1%21%20Quero%20falar%20com%20o%20time%20de%20vendas%20da%20Filadelfo%20Motors."
+          href="https://wa.me/5517992155535?text=Gostaria%20de%20Falar%20Com%20um%20Vendedor"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Falar com o time de vendas no WhatsApp (17) 99215-5535"
