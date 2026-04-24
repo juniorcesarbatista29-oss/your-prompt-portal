@@ -29,6 +29,7 @@ const parseNum = (s: string | undefined | null): number | null => {
 };
 
 const Catalogo = () => {
+  useCanonical("/catalogo");
   const [selected, setSelected] = useState<Bike | null>(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
