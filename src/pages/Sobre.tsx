@@ -19,7 +19,7 @@ const Sobre = () => {
         <div className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-secondary">
           <img
             src={sobreHero}
-            alt="Mobilidade urbana elétrica Filadelfo Motors em destaque"
+            alt="Mobilidade urbana sustentável com bicicletas elétricas Filadelfo Motors"
             className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
             decoding="async"
