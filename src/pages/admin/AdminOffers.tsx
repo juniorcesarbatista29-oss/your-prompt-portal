@@ -269,7 +269,7 @@ const AdminOffers = () => {
         <div className="space-y-3">
           {offers.map((o) => (
             <div key={o.id} className="flex items-center gap-4 p-4 border border-border rounded-md bg-card">
-              {o.image_url && <img src={o.image_url} alt="" className="size-14 object-contain bg-brand-light rounded shrink-0" />}
+              {o.image_url && <img src={o.image_url} alt={`Imagem da oferta ${o.title}`} className="size-14 object-contain bg-brand-light rounded shrink-0" />}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="font-display text-lg uppercase">{o.title}</h3>
