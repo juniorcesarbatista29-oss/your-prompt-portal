@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { fetchActiveBikes, queryKeys } from "@/lib/queries";
+import { useCanonical } from "@/hooks/useCanonical";
 
 const badgeLabels: Record<string, string> = {
   lancamento: "Lançamento",
@@ -28,6 +29,7 @@ const parseNum = (s: string | undefined | null): number | null => {
 };
 
 const Catalogo = () => {
+  useCanonical("/catalogo");
   const [selected, setSelected] = useState<Bike | null>(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
