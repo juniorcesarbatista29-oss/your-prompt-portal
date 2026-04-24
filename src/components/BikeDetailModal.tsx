@@ -50,7 +50,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
         </span>
         <img
           src={active.url}
-          alt={`${bike.name} — bicicleta elétrica Filadelfo Motors`}
+          alt={buildBikeAlt(bike)}
           className="w-full h-full object-contain p-4"
           loading="eager"
         />
