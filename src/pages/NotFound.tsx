@@ -12,11 +12,16 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
+      <div className="text-center px-4">
+        <p className="mb-2 font-display text-6xl md:text-7xl text-muted-foreground">404</p>
+        <h1 className="mb-4 font-display text-3xl md:text-4xl uppercase">
+          Página não encontrada
+        </h1>
+        <p className="mb-6 text-base text-muted-foreground">
+          A página que você procura não existe. Volte ao início e descubra nossas bicicletas elétricas.
+        </p>
         <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
+          Voltar para a página inicial
         </a>
       </div>
     </div>
