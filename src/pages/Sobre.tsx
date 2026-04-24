@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
@@ -7,10 +6,11 @@ import { useCanonical } from "@/hooks/useCanonical";
 import sobreHero from "@/assets/sobre-hero.webp";
 
 const Sobre = () => {
-  useCanonical("/sobre");
-  useEffect(() => {
-    document.title = "Sobre a Filadelfo Motors | Propósito, Qualidade e Sustentabilidade";
-  }, []);
+  useCanonical("/sobre", {
+    title: "Sobre a Filadelfo Motors | Propósito, Qualidade e Sustentabilidade",
+    description:
+      "Conheça a Filadelfo Motors: nossa missão de mobilidade urbana elétrica, compromisso com a sustentabilidade e qualidade premium em bicicletas elétricas.",
+  });
   return (
     <PageTransition>
       <main className="min-h-screen bg-background text-foreground">
