@@ -5,8 +5,10 @@ import { Catalog } from "@/components/Catalog";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
+import { useCanonical } from "@/hooks/useCanonical";
 
 const Index = () => {
+  useCanonical("/");
   return (
     <PageTransition>
       <main className="min-h-screen bg-background text-foreground">
