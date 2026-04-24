@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
@@ -9,6 +10,9 @@ import { useCanonical } from "@/hooks/useCanonical";
 
 const Index = () => {
   useCanonical("/");
+  useEffect(() => {
+    document.title = "Filadelfo Motors | Bicicletas Elétricas Premium | Mobilidade Urbana Sustentável";
+  }, []);
   return (
     <PageTransition>
       <main className="min-h-screen bg-background text-foreground">
