@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroBike from "@/assets/hero-bike.jpg";
+import heroBike from "@/assets/hero-bike.webp";
 
 export const Hero = () => {
   return (
