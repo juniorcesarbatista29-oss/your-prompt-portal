@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { fetchActiveBikes, queryKeys } from "@/lib/queries";
+import { useCanonical } from "@/hooks/useCanonical";
 
 const badgeLabels: Record<string, string> = {
   lancamento: "Lançamento",
