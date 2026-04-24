@@ -274,7 +274,7 @@ const Catalogo = () => {
                     <div className="aspect-square bg-brand-light relative overflow-hidden">
                       <img
                         src={p.image}
-                        alt={`${p.name} — bicicleta elétrica Filadelfo Motors`}
+                        alt={buildBikeAlt(p)}
                         loading="lazy"
                         className="w-full h-full object-contain p-3 md:p-4 transition-transform duration-700 group-hover:scale-110"
                       />
