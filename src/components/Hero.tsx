@@ -13,7 +13,7 @@ export const Hero = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src={heroBike}
-          alt="Bicicleta elétrica Filadelfo Motors em destaque"
+          alt="Bicicleta elétrica premium Filadelfo Motors em ambiente urbano — coleção 2026"
           width={1920}
           height={1080}
           loading="eager"
