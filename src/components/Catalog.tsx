@@ -9,6 +9,7 @@ import bikeMtb from "@/assets/bike-mtb.jpg";
 import bikeFold from "@/assets/bike-fold.jpg";
 import { BikeDetailModal, type Bike } from "./BikeDetailModal";
 import { fetchActiveBikes, queryKeys } from "@/lib/queries";
+import { buildBikeAlt } from "@/lib/bike-alt";
 
 const fallbackProducts: Bike[] = [
   {
