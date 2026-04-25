@@ -54,9 +54,15 @@ export const Hero = () => {
               <span className="block animate-hero-line" style={{ animationDelay: "0.05s" }}>
                 {titleA}
                 {titleB && <span className="text-brand-red">{titleB}</span>}
-                {titleC}
               </span>
             </span>
+            {titleC?.trim() && (
+              <span className="block overflow-hidden">
+                <span className="block animate-hero-line" style={{ animationDelay: "0.28s" }}>
+                  {titleC.trim()}
+                </span>
+              </span>
+            )}
           </h1>
 
           <p className="mt-6 md:mt-8 mx-auto max-w-[22rem] md:max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
