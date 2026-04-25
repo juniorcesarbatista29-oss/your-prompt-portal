@@ -88,6 +88,9 @@ const AnimatedRoutes = () => {
             <Route path="bikes" element={<AdminBikes />} />
             <Route path="bikes/:id" element={<AdminBikeForm />} />
             <Route path="ofertas" element={<AdminOffers />} />
+            <Route path="site" element={<AdminSite />} />
+            <Route path="conteudo" element={<AdminContent />} />
+            <Route path="links" element={<AdminLinks />} />
             <Route path="conta" element={<AdminAccount />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
