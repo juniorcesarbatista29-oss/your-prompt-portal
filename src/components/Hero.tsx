@@ -2,8 +2,21 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroBike from "@/assets/hero-bike.webp";
+import { usePageContent } from "@/hooks/usePageContent";
 
 export const Hero = () => {
+  const { t, img } = usePageContent("home");
+  const eyebrow = t("hero_eyebrow", "Coleção 2026");
+  const titleRaw = t("hero_title", "Energia que move cidades.");
+  // Split title at the last space so the final word wraps to a second line
+  const lastSpace = titleRaw.lastIndexOf(" ");
+  const titleA = lastSpace > 0 ? titleRaw.slice(0, lastSpace) : titleRaw;
+  const titleB = lastSpace > 0 ? titleRaw.slice(lastSpace + 1) : "";
+  const subtitle = t(
+    "hero_subtitle",
+    "Bicicletas elétricas premium para quem não negocia performance, design ou liberdade."
+  );
+  const heroImg = img("hero_image", heroBike);
   return (
     <section
       id="top"
