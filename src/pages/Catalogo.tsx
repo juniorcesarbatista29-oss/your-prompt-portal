@@ -126,15 +126,15 @@ const Catalogo = () => {
       <main className="min-h-screen bg-background text-foreground">
         <Header />
 
-        <section className="pt-28 md:pt-32 pb-10 md:pb-14 border-b border-border">
-          <div className="container mx-auto px-4 text-center">
-            <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
+        <section className="pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-14 border-b border-border">
+          <div className="container mx-auto px-4 text-center flex flex-col items-center">
+            <span className="text-[10px] sm:text-xs tracking-[0.35em] sm:tracking-[0.4em] uppercase text-muted-foreground font-medium">
               Coleção 2026
             </span>
-            <h1 className="font-display text-4xl xs:text-5xl sm:text-6xl md:text-7xl uppercase mt-4 leading-[0.95] sm:leading-[0.9]">
+            <h1 className="font-display text-[2.5rem] xs:text-5xl sm:text-6xl md:text-7xl uppercase mt-3 sm:mt-4 leading-[0.95] sm:leading-[0.9] text-balance">
               Catálogo <span className="text-brand-red">completo.</span>
             </h1>
-            <p className="mt-4 max-w-xl mx-auto text-sm md:text-base text-muted-foreground">
+            <p className="mt-4 max-w-md sm:max-w-xl mx-auto text-sm sm:text-base text-muted-foreground leading-relaxed px-2 text-balance">
               Toda a linha Filadelfo Motors — urbanas, mopeds, mountain e dobráveis.
               Encontre a sua próxima bike elétrica.
             </p>
