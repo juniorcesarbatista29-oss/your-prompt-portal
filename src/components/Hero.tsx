@@ -25,7 +25,7 @@ export const Hero = () => {
       {/* Background bike — clean automotive composition */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
-          src={heroBike}
+          src={heroImg}
           alt="Bicicleta elétrica premium Filadelfo Motors em ambiente urbano — coleção 2026"
           width={1920}
           height={1080}
