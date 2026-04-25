@@ -7,24 +7,12 @@ import { usePageContent } from "@/hooks/usePageContent";
 export const Hero = () => {
   const { t, img } = usePageContent("home");
   const eyebrow = t("hero_eyebrow", "Coleção 2026");
-  const titleRaw = t("hero_title", "Energia que **move** cidades.");
-  // Support **word** to mark the red-highlighted word; otherwise fall back
-  // to splitting at the last space so the final word breaks to a new line.
-  const markMatch = titleRaw.match(/^(.*?)\*\*(.+?)\*\*(.*)$/);
-  let titleA = titleRaw;
-  let titleB = "";
-  let titleC = "";
-  let useInlineHighlight = false;
-  if (markMatch) {
-    useInlineHighlight = true;
-    titleA = markMatch[1];
-    titleB = markMatch[2];
-    titleC = markMatch[3];
-  } else {
-    const lastSpace = titleRaw.lastIndexOf(" ");
-    titleA = lastSpace > 0 ? titleRaw.slice(0, lastSpace) : titleRaw;
-    titleB = lastSpace > 0 ? titleRaw.slice(lastSpace + 1) : "";
-  }
+  const titleRaw = t("hero_title", "Energia que move cidades.");
+  const normalizedTitle = titleRaw.replace(/\*\*/g, "");
+  const moveMatch = normalizedTitle.match(/^(.*?)(move)(.*)$/i);
+  const titleA = moveMatch ? moveMatch[1] : normalizedTitle;
+  const titleB = moveMatch ? moveMatch[2] : "";
+  const titleC = moveMatch ? moveMatch[3] : "";
   const subtitle = t(
     "hero_subtitle",
     "Bicicletas elétricas premium para quem não negocia performance, design ou liberdade."
@@ -62,30 +50,13 @@ export const Hero = () => {
           </span>
 
           <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.35rem,11.4vw,4.2rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.96] sm:leading-[0.88] uppercase tracking-tight text-foreground">
-            {useInlineHighlight ? (
-              <span className="block overflow-hidden">
-                <span className="block animate-hero-line" style={{ animationDelay: "0.05s" }}>
-                  {titleA}
-                  <span className="text-brand-red">{titleB}</span>
-                  {titleC}
-                </span>
+            <span className="block overflow-hidden">
+              <span className="block animate-hero-line" style={{ animationDelay: "0.05s" }}>
+                {titleA}
+                {titleB && <span className="text-brand-red">{titleB}</span>}
+                {titleC}
               </span>
-            ) : (
-              <>
-                <span className="block overflow-hidden">
-                  <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
-                    {titleA}
-                  </span>
-                </span>
-                {titleB && (
-                  <span className="block overflow-hidden">
-                    <span className="block animate-hero-line text-brand-red" style={{ animationDelay: "0.28s" }}>
-                      {titleB}
-                    </span>
-                  </span>
-                )}
-              </>
-            )}
+            </span>
           </h1>
 
           <p className="mt-6 md:mt-8 mx-auto max-w-[22rem] md:max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
