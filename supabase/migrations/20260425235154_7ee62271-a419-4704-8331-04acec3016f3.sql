@@ -1,0 +1,2 @@
+UPDATE public.page_content SET text_value='Energia que move cidades.' WHERE page='home' AND block_key='hero_title';
+UPDATE public.page_content SET text_value='Bicicletas elétricas premium para quem não negocia performance, design ou liberdade.' WHERE page='home' AND block_key='hero_subtitle';
