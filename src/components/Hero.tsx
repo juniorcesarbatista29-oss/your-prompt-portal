@@ -2,8 +2,21 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroBike from "@/assets/hero-bike.webp";
+import { usePageContent } from "@/hooks/usePageContent";
 
 export const Hero = () => {
+  const { t, img } = usePageContent("home");
+  const eyebrow = t("hero_eyebrow", "Coleção 2026");
+  const titleRaw = t("hero_title", "Energia que move cidades.");
+  // Split title at the last space so the final word wraps to a second line
+  const lastSpace = titleRaw.lastIndexOf(" ");
+  const titleA = lastSpace > 0 ? titleRaw.slice(0, lastSpace) : titleRaw;
+  const titleB = lastSpace > 0 ? titleRaw.slice(lastSpace + 1) : "";
+  const subtitle = t(
+    "hero_subtitle",
+    "Bicicletas elétricas premium para quem não negocia performance, design ou liberdade."
+  );
+  const heroImg = img("hero_image", heroBike);
   return (
     <section
       id="top"
@@ -12,7 +25,7 @@ export const Hero = () => {
       {/* Background bike — clean automotive composition */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
-          src={heroBike}
+          src={heroImg}
           alt="Bicicleta elétrica premium Filadelfo Motors em ambiente urbano — coleção 2026"
           width={1920}
           height={1080}
@@ -32,25 +45,26 @@ export const Hero = () => {
       <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-8 md:gap-8 items-center px-4">
         <div className="md:col-span-12 animate-fade-up text-center pt-9 sm:pt-0">
           <span className="text-xs sm:text-sm tracking-[0.34em] sm:tracking-[0.4em] uppercase text-muted-foreground font-medium">
-            Coleção 2026
+            {eyebrow}
           </span>
 
           <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.35rem,11.4vw,4.2rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.96] sm:leading-[0.88] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
               <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
-                Energia que <span className="text-brand-red">move</span>
+                {titleA}
               </span>
             </span>
-            <span className="block overflow-hidden">
-              <span className="block animate-hero-line" style={{ animationDelay: "0.28s" }}>
-                cidades.
+            {titleB && (
+              <span className="block overflow-hidden">
+                <span className="block animate-hero-line text-brand-red" style={{ animationDelay: "0.28s" }}>
+                  {titleB}
+                </span>
               </span>
-            </span>
+            )}
           </h1>
 
           <p className="mt-6 md:mt-8 mx-auto max-w-[22rem] md:max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
-            Bicicletas elétricas premium para quem não negocia performance,
-            design ou liberdade.
+            {subtitle}
           </p>
 
           <div className="mt-8 md:mt-10 flex justify-center">

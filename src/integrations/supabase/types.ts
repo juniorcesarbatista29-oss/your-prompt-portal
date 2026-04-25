@@ -106,6 +106,42 @@ export type Database = {
         }
         Relationships: []
       }
+      nav_links: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          is_visible: boolean
+          label: string
+          location: string
+          open_in_new_tab: boolean
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          is_visible?: boolean
+          label: string
+          location: string
+          open_in_new_tab?: boolean
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          is_visible?: boolean
+          label?: string
+          location?: string
+          open_in_new_tab?: boolean
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       offers: {
         Row: {
           created_at: string
@@ -148,6 +184,99 @@ export type Database = {
           subtitle?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      page_content: {
+        Row: {
+          block_key: string
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string | null
+          label: string | null
+          link_url: string | null
+          long_text_value: string | null
+          page: string
+          text_value: string | null
+          updated_at: string
+        }
+        Insert: {
+          block_key: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          label?: string | null
+          link_url?: string | null
+          long_text_value?: string | null
+          page: string
+          text_value?: string | null
+          updated_at?: string
+        }
+        Update: {
+          block_key?: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          label?: string | null
+          link_url?: string | null
+          long_text_value?: string | null
+          page?: string
+          text_value?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string | null
+          facebook_url: string | null
+          id: string
+          instagram_url: string | null
+          og_image_url: string | null
+          phone: string | null
+          seo_description: string | null
+          seo_title: string | null
+          tiktok_url: string | null
+          updated_at: string
+          whatsapp_number: string | null
+          youtube_url: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          facebook_url?: string | null
+          id?: string
+          instagram_url?: string | null
+          og_image_url?: string | null
+          phone?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          tiktok_url?: string | null
+          updated_at?: string
+          whatsapp_number?: string | null
+          youtube_url?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          facebook_url?: string | null
+          id?: string
+          instagram_url?: string | null
+          og_image_url?: string | null
+          phone?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          tiktok_url?: string | null
+          updated_at?: string
+          whatsapp_number?: string | null
+          youtube_url?: string | null
         }
         Relationships: []
       }

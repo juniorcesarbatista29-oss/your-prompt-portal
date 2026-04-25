@@ -18,6 +18,9 @@ const AdminBikes = lazy(() => import("./pages/admin/AdminBikes.tsx"));
 const AdminBikeForm = lazy(() => import("./pages/admin/AdminBikeForm.tsx"));
 const AdminOffers = lazy(() => import("./pages/admin/AdminOffers.tsx"));
 const AdminAccount = lazy(() => import("./pages/admin/AdminAccount.tsx"));
+const AdminSite = lazy(() => import("./pages/admin/AdminSite.tsx"));
+const AdminContent = lazy(() => import("./pages/admin/AdminContent.tsx"));
+const AdminLinks = lazy(() => import("./pages/admin/AdminLinks.tsx"));
 const AdminGuard = lazy(() =>
   import("./components/admin/AdminGuard.tsx").then((m) => ({ default: m.AdminGuard }))
 );
@@ -85,6 +88,9 @@ const AnimatedRoutes = () => {
             <Route path="bikes" element={<AdminBikes />} />
             <Route path="bikes/:id" element={<AdminBikeForm />} />
             <Route path="ofertas" element={<AdminOffers />} />
+            <Route path="site" element={<AdminSite />} />
+            <Route path="conteudo" element={<AdminContent />} />
+            <Route path="links" element={<AdminLinks />} />
             <Route path="conta" element={<AdminAccount />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

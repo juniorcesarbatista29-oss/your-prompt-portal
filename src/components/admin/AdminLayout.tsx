@@ -1,11 +1,14 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { Bike, Megaphone, KeyRound, LogOut, ExternalLink } from "lucide-react";
+import { Bike, Megaphone, KeyRound, LogOut, ExternalLink, Settings, FileText, Link2 } from "lucide-react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
   { to: "/admin/bikes", label: "Bicicletas", icon: Bike },
   { to: "/admin/ofertas", label: "Ofertas", icon: Megaphone },
+  { to: "/admin/conteudo", label: "Conteúdo", icon: FileText },
+  { to: "/admin/site", label: "Site", icon: Settings },
+  { to: "/admin/links", label: "Links", icon: Link2 },
   { to: "/admin/conta", label: "Senha", icon: KeyRound },
 ];
 

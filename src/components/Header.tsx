@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
+import { useNavLinks } from "@/hooks/useNavLinks";
 
-const links = [
-  { label: "Catálogo", href: "/catalogo" },
-  { label: "Sobre nós", href: "/sobre" },
-  { label: "Falar com o time de vendas", href: "/#financiamento" },
+const fallbackLinks = [
+  { label: "Catálogo", url: "/catalogo", open_in_new_tab: false },
+  { label: "Sobre nós", url: "/sobre", open_in_new_tab: false },
+  { label: "Falar com o time de vendas", url: "/#financiamento", open_in_new_tab: false },
 ];
 
 // Prefetch lazy chunks on hover/focus for instant navigation
@@ -20,6 +21,8 @@ const prefetch = (href: string) => prefetchers[href]?.();
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { links: dbLinks } = useNavLinks("header");
+  const links = dbLinks.length > 0 ? dbLinks : fallbackLinks;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -59,8 +62,9 @@ export const Header = () => {
         <Logo />
 
         <nav className="hidden lg:flex items-center gap-9">
-          {links.map((l) => {
-            const isInternal = l.href.startsWith("/") && !l.href.startsWith("/#");
+          {links.map((l: any) => {
+            const href = l.url;
+            const isInternal = href.startsWith("/") && !href.startsWith("/#") && !l.open_in_new_tab;
             const className =
               "text-sm font-medium text-foreground/75 hover:text-brand-red transition-colors relative group";
             const inner = (
@@ -71,17 +75,23 @@ export const Header = () => {
             );
             return isInternal ? (
               <Link
-                key={l.href}
-                to={l.href}
+                key={href}
+                to={href}
                 className={className}
-                onMouseEnter={() => prefetch(l.href)}
-                onFocus={() => prefetch(l.href)}
-                onTouchStart={() => prefetch(l.href)}
+                onMouseEnter={() => prefetch(href)}
+                onFocus={() => prefetch(href)}
+                onTouchStart={() => prefetch(href)}
               >
                 {inner}
               </Link>
             ) : (
-              <a key={l.href} href={l.href} className={className}>
+              <a
+                key={href}
+                href={href}
+                target={l.open_in_new_tab ? "_blank" : undefined}
+                rel={l.open_in_new_tab ? "noopener noreferrer" : undefined}
+                className={className}
+              >
                 {inner}
               </a>
             );
@@ -113,22 +123,30 @@ export const Header = () => {
           }}
         >
           <nav className="container mx-auto flex flex-col py-4 px-4">
-            {links.map((l) => {
-              const isInternal = l.href.startsWith("/") && !l.href.startsWith("/#");
+            {links.map((l: any) => {
+              const href = l.url;
+              const isInternal = href.startsWith("/") && !href.startsWith("/#") && !l.open_in_new_tab;
               const cls =
                 "py-4 text-base font-medium text-foreground/85 hover:text-brand-red border-b border-border/60 last:border-0";
               return isInternal ? (
                 <Link
-                  key={l.href}
-                  to={l.href}
+                  key={href}
+                  to={href}
                   onClick={() => setOpen(false)}
-                  onTouchStart={() => prefetch(l.href)}
+                  onTouchStart={() => prefetch(href)}
                   className={cls}
                 >
                   {l.label}
                 </Link>
               ) : (
-                <a key={l.href} href={l.href} onClick={() => setOpen(false)} className={cls}>
+                <a
+                  key={href}
+                  href={href}
+                  target={l.open_in_new_tab ? "_blank" : undefined}
+                  rel={l.open_in_new_tab ? "noopener noreferrer" : undefined}
+                  onClick={() => setOpen(false)}
+                  className={cls}
+                >
                   {l.label}
                 </a>
               );
