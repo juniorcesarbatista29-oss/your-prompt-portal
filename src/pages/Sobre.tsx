@@ -3,14 +3,19 @@ import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
 import { useCanonical } from "@/hooks/useCanonical";
+import { usePageContent } from "@/hooks/usePageContent";
 import sobreHero from "@/assets/sobre-hero.webp";
 
 const Sobre = () => {
+  const { t, img } = usePageContent("sobre");
   useCanonical("/sobre", {
-    title: "Sobre a Filadelfo Motors | Propósito, Qualidade e Sustentabilidade",
-    description:
-      "Conheça a Filadelfo Motors: nossa missão de mobilidade urbana elétrica, compromisso com a sustentabilidade e qualidade premium em bicicletas elétricas.",
+    title: t("seo_title", "Sobre a Filadelfo Motors | Propósito, Qualidade e Sustentabilidade"),
+    description: t(
+      "seo_description",
+      "Conheça a Filadelfo Motors: nossa missão de mobilidade urbana elétrica, compromisso com a sustentabilidade e qualidade premium em bicicletas elétricas."
+    ),
   });
+  const heroImg = img("hero_image", sobreHero);
   return (
     <PageTransition>
       <main className="min-h-screen bg-background text-foreground">
@@ -18,7 +23,7 @@ const Sobre = () => {
       <div className="pt-16 md:pt-20">
         <div className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-secondary">
           <img
-            src={sobreHero}
+            src={heroImg}
             alt="Mobilidade urbana sustentável com bicicletas elétricas Filadelfo Motors"
             className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
