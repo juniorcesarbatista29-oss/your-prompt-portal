@@ -62,17 +62,29 @@ export const Hero = () => {
           </span>
 
           <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.35rem,11.4vw,4.2rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.96] sm:leading-[0.88] uppercase tracking-tight text-foreground">
-            <span className="block overflow-hidden">
-              <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
-                {titleA}
-              </span>
-            </span>
-            {titleB && (
+            {useInlineHighlight ? (
               <span className="block overflow-hidden">
-                <span className="block animate-hero-line text-brand-red" style={{ animationDelay: "0.28s" }}>
-                  {titleB}
+                <span className="block animate-hero-line" style={{ animationDelay: "0.05s" }}>
+                  {titleA}
+                  <span className="text-brand-red">{titleB}</span>
+                  {titleC}
                 </span>
               </span>
+            ) : (
+              <>
+                <span className="block overflow-hidden">
+                  <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
+                    {titleA}
+                  </span>
+                </span>
+                {titleB && (
+                  <span className="block overflow-hidden">
+                    <span className="block animate-hero-line text-brand-red" style={{ animationDelay: "0.28s" }}>
+                      {titleB}
+                    </span>
+                  </span>
+                )}
+              </>
             )}
           </h1>
 
