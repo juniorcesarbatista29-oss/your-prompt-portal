@@ -45,14 +45,16 @@ export const About = () => {
             Sobre nós
           </span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 leading-[0.9] text-balance">
-            Movidos por
-            <br />
-            <span className="text-brand-red">propósito</span>.
+            {titleA}
+            {titleB && (
+              <>
+                <br />
+                <span className="text-brand-red">{titleB}</span>
+              </>
+            )}
           </h2>
           <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base">
-            A Filadelfo Motors nasceu da convicção de que a mobilidade urbana
-            precisa ser silenciosa, inteligente e elétrica. Desenhamos cada
-            modelo para durar e pedalar mais longe.
+            {aboutParagraph}
           </p>
 
           <div className="mt-8 md:mt-10 grid grid-cols-2 gap-4 md:gap-6">
