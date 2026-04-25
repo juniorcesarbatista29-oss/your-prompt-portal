@@ -45,25 +45,26 @@ export const Hero = () => {
       <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-8 md:gap-8 items-center px-4">
         <div className="md:col-span-12 animate-fade-up text-center pt-9 sm:pt-0">
           <span className="text-xs sm:text-sm tracking-[0.34em] sm:tracking-[0.4em] uppercase text-muted-foreground font-medium">
-            Coleção 2026
+            {eyebrow}
           </span>
 
           <h1 className="mt-4 md:mt-5 font-display text-[clamp(2.35rem,11.4vw,4.2rem)] sm:text-[clamp(2.35rem,8.8vw,7rem)] leading-[0.96] sm:leading-[0.88] uppercase tracking-tight text-foreground">
             <span className="block overflow-hidden">
               <span className="block max-w-full whitespace-nowrap animate-hero-line" style={{ animationDelay: "0.05s" }}>
-                Energia que <span className="text-brand-red">move</span>
+                {titleA}
               </span>
             </span>
-            <span className="block overflow-hidden">
-              <span className="block animate-hero-line" style={{ animationDelay: "0.28s" }}>
-                cidades.
+            {titleB && (
+              <span className="block overflow-hidden">
+                <span className="block animate-hero-line text-brand-red" style={{ animationDelay: "0.28s" }}>
+                  {titleB}
+                </span>
               </span>
-            </span>
+            )}
           </h1>
 
           <p className="mt-6 md:mt-8 mx-auto max-w-[22rem] md:max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
-            Bicicletas elétricas premium para quem não negocia performance,
-            design ou liberdade.
+            {subtitle}
           </p>
 
           <div className="mt-8 md:mt-10 flex justify-center">
