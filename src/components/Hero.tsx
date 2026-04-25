@@ -7,24 +7,12 @@ import { usePageContent } from "@/hooks/usePageContent";
 export const Hero = () => {
   const { t, img } = usePageContent("home");
   const eyebrow = t("hero_eyebrow", "Coleção 2026");
-  const titleRaw = t("hero_title", "Energia que **move** cidades.");
-  // Support **word** to mark the red-highlighted word; otherwise fall back
-  // to splitting at the last space so the final word breaks to a new line.
-  const markMatch = titleRaw.match(/^(.*?)\*\*(.+?)\*\*(.*)$/);
-  let titleA = titleRaw;
-  let titleB = "";
-  let titleC = "";
-  let useInlineHighlight = false;
-  if (markMatch) {
-    useInlineHighlight = true;
-    titleA = markMatch[1];
-    titleB = markMatch[2];
-    titleC = markMatch[3];
-  } else {
-    const lastSpace = titleRaw.lastIndexOf(" ");
-    titleA = lastSpace > 0 ? titleRaw.slice(0, lastSpace) : titleRaw;
-    titleB = lastSpace > 0 ? titleRaw.slice(lastSpace + 1) : "";
-  }
+  const titleRaw = t("hero_title", "Energia que move cidades.");
+  const normalizedTitle = titleRaw.replace(/\*\*/g, "");
+  const moveMatch = normalizedTitle.match(/^(.*?)(move)(.*)$/i);
+  const titleA = moveMatch ? moveMatch[1] : normalizedTitle;
+  const titleB = moveMatch ? moveMatch[2] : "";
+  const titleC = moveMatch ? moveMatch[3] : "";
   const subtitle = t(
     "hero_subtitle",
     "Bicicletas elétricas premium para quem não negocia performance, design ou liberdade."
