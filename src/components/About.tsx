@@ -1,6 +1,17 @@
 import { Leaf, Award, Users, Recycle, Wind, TreePine } from "lucide-react";
+import { usePageContent } from "@/hooks/usePageContent";
 
 export const About = () => {
+  const { t } = usePageContent("home");
+  const aboutTitle = t("about_title", "Movidos por propósito.");
+  const aboutParagraph = t(
+    "about_paragraph",
+    "A Filadelfo Motors nasceu da convicção de que a mobilidade urbana precisa ser silenciosa, inteligente e elétrica. Desenhamos cada modelo para durar e pedalar mais longe."
+  );
+  // Highlight the last word in red for visual rhythm
+  const lastSpace = aboutTitle.lastIndexOf(" ");
+  const titleA = lastSpace > 0 ? aboutTitle.slice(0, lastSpace) : aboutTitle;
+  const titleB = lastSpace > 0 ? aboutTitle.slice(lastSpace + 1) : "";
   const stats = [
     { v: "359", l: "Clientes" },
     { v: "98%", l: "Satisfação" },
