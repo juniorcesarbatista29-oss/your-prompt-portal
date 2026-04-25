@@ -14,6 +14,7 @@ const Sobre = lazy(() => import("./pages/Sobre.tsx"));
 const Catalogo = lazy(() => import("./pages/Catalogo.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin.tsx"));
+const AdminSignup = lazy(() => import("./pages/admin/AdminSignup.tsx"));
 const AdminBikes = lazy(() => import("./pages/admin/AdminBikes.tsx"));
 const AdminBikeForm = lazy(() => import("./pages/admin/AdminBikeForm.tsx"));
 const AdminOffers = lazy(() => import("./pages/admin/AdminOffers.tsx"));
@@ -76,6 +77,7 @@ const AnimatedRoutes = () => {
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/signup" element={<AdminSignup />} />
           <Route
             path="/admin"
             element={
