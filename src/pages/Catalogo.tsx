@@ -139,8 +139,8 @@ const Catalogo = () => {
               Encontre a sua próxima bike elétrica.
             </p>
 
-            <div className="mt-8 flex flex-col md:flex-row gap-3 md:items-center">
-              <div className="relative md:max-w-xs w-full">
+            <div className="mt-8 w-full max-w-xl mx-auto flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-center">
+              <div className="relative w-full sm:flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <Input
                   placeholder="Buscar por nome ou categoria"
@@ -152,7 +152,7 @@ const Catalogo = () => {
               <button
                 type="button"
                 onClick={() => setFiltersOpen((o) => !o)}
-                className="md:ml-auto inline-flex items-center gap-2 text-[11px] tracking-widest uppercase px-3 py-2 rounded-full border border-border hover:border-foreground transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 text-[11px] tracking-widest uppercase px-3 py-2 rounded-full border border-border hover:border-foreground transition-colors whitespace-nowrap"
                 aria-expanded={filtersOpen}
               >
                 <SlidersHorizontal className="size-3.5" />
