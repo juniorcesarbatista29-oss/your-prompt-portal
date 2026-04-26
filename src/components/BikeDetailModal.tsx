@@ -286,7 +286,7 @@ function setMeta(
   };
 }
 
-const slugify = (s: string) =>
+export const slugify = (s: string) =>
   s
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
