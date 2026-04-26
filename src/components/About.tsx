@@ -144,7 +144,7 @@ export const About = () => {
                   <div className="size-10 md:size-12 rounded-md bg-secondary border border-border flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:border-foreground transition-all shrink-0">
                     <Icon className="size-5 text-foreground group-hover:text-background transition-colors" />
                   </div>
-                  <h4 className="font-display text-lg md:text-xl uppercase mb-2 leading-tight">{t}</h4>
+                  <h3 className="font-display text-lg md:text-xl uppercase mb-2 leading-tight">{t}</h3>
                   <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{d}</p>
                 </div>
               ))}
