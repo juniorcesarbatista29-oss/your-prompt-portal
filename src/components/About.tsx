@@ -46,7 +46,7 @@ export const About = () => {
           <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Sobre nós
           </span>
-          <h2 className="font-display text-[2.25rem] leading-[0.95] sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 text-balance">
+          <h1 className="font-display text-[2.25rem] leading-[0.95] sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 text-balance">
             {titleA}
             {titleB && (
               <>
@@ -54,7 +54,7 @@ export const About = () => {
                 <span className="text-brand-red">{titleB}</span>
               </>
             )}
-          </h2>
+          </h1>
           <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
             {aboutParagraph}
           </p>
