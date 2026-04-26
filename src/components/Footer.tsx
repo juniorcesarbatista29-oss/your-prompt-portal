@@ -90,12 +90,31 @@ export const Footer = () => {
             <div className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-3 md:mb-4 font-medium">
               Contato
             </div>
-            <ul className="space-y-3 text-sm text-foreground/80">
-              <li className="flex items-start gap-3">
+            <address
+              aria-label="Informações de contato da Filadelfo Motors"
+              className="not-italic space-y-3 text-sm text-foreground/80"
+              itemScope
+              itemType="https://schema.org/LocalBusiness"
+            >
+              <meta itemProp="name" content="Filadelfo Motors" />
+              <div className="flex items-start gap-3">
                 <MapPin className="size-4 text-foreground/60 shrink-0 mt-0.5" />
-                <span className="leading-snug">{address}</span>
-              </li>
-              <li className="flex items-center gap-3">
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    address,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver endereço no mapa: ${address}`}
+                  className="leading-snug hover:text-brand-red transition-colors"
+                  itemProp="address"
+                  itemScope
+                  itemType="https://schema.org/PostalAddress"
+                >
+                  <span itemProp="streetAddress">{address}</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
                 <Phone className="size-4 text-foreground/60 shrink-0" />
                 <a
                   href={phoneHref}
@@ -103,20 +122,22 @@ export const Footer = () => {
                   rel="noopener noreferrer"
                   aria-label={`Falar no WhatsApp ${phone}`}
                   className="hover:text-brand-red transition-colors"
+                  itemProp="telephone"
                 >
                   {phone}
                 </a>
-              </li>
-              <li className="flex items-start gap-3">
+              </div>
+              <div className="flex items-start gap-3">
                 <Mail className="size-4 text-foreground/60 shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${email}`}
                   className="hover:text-brand-red transition-colors break-all leading-snug"
+                  itemProp="email"
                 >
                   {email}
                 </a>
-              </li>
-            </ul>
+              </div>
+            </address>
           </div>
         </div>
 
