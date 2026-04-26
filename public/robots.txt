@@ -1,4 +1,44 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+
+# Bloqueia área administrativa do indexador
+Disallow: /admin
+Disallow: /admin/
+
+# Permite explicitamente os principais bots de busca
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+# Crawlers de pré-visualização social (precisam ler OG tags)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Bloqueia raspadores agressivos / treino de IA
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
 
 Sitemap: https://filadelfomotors.com.br/sitemap.xml
