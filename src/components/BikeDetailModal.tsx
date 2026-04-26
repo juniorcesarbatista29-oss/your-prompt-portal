@@ -102,6 +102,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
                       alt={g.caption ?? buildBikeAlt(bike)}
                       className="w-full h-full object-contain p-4"
                       loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
                     />
                   </div>
                 </CarouselItem>
