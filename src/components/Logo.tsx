@@ -27,10 +27,11 @@ export const Logo = ({ className = "", variant = "auto" }: LogoProps) => {
     >
       <img
         src={logo}
-        alt="Filadelfo Motors"
+        alt="Filadelfo Motors — bicicletas elétricas premium"
         width={1311}
         height={285}
         className={`h-9 sm:h-10 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-80 ${filterClass}`}
+        loading="eager"
         decoding="async"
       />
     </Link>
