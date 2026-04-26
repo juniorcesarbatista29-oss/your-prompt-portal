@@ -149,12 +149,12 @@ export const Catalog = () => {
               <div className="p-4 sm:p-5 md:p-6">
                 <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
                 {p.weightCapacity && (
-                  <div className="mt-2 flex items-center gap-2 text-muted-foreground">
-                    <Weight className="size-3.5" strokeWidth={1.5} />
-                    <span className="text-[10px] tracking-[0.2em] uppercase">
+                  <div className="mt-2 flex items-center gap-1.5 sm:gap-2 text-muted-foreground flex-wrap">
+                    <Weight className="size-3 sm:size-3.5 shrink-0" strokeWidth={1.5} />
+                    <span className="text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase">
                       Peso suportado
                     </span>
-                    <span className="text-xs font-semibold text-foreground tabular-nums">
+                    <span className="text-[11px] sm:text-xs font-semibold text-foreground tabular-nums">
                       {p.weightCapacity}
                     </span>
                   </div>
