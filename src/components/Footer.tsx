@@ -15,7 +15,8 @@ export const Footer = () => {
   ].filter((s) => s.href);
 
   const phone = settings?.phone || "(17) 99215-5535";
-  const phoneTel = `tel:${(settings?.whatsapp_number || "+5517992155535").replace(/\D/g, "")}`;
+  const whatsappNumber = (settings?.whatsapp_number || "5517992155535").replace(/\D/g, "");
+  const phoneHref = `https://wa.me/${whatsappNumber}`;
   const email = settings?.email || "contato@filadelfomotors.com.br";
   const address = settings?.address || "Av. Da Saudade — Novo Horizonte, SP";
 
