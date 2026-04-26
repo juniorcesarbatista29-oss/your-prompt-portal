@@ -277,6 +277,49 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
     };
   }, [open, bike]);
 
+  // JSON-LD Product schema (rich snippets) — only while the modal is open.
+  const productLd = useMemo(() => {
+    if (!open || !bike) return null;
+    const priceNum = parseBrPrice(bike.price);
+    const images = (bike.gallery && bike.gallery.length > 0
+      ? bike.gallery.map((g) => g.url)
+      : [bike.image]
+    ).filter(Boolean);
+    const description =
+      bike.description?.trim() ||
+      `${bike.name} (${bike.tag}) — bicicleta elétrica Filadelfo Motors. Autonomia ${bike.specs.autonomia}, motor ${bike.specs.motor}, velocidade ${bike.specs.vel}.`;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: bike.name,
+      image: images,
+      description,
+      brand: { "@type": "Brand", name: "Filadelfo Motors" },
+      category: bike.tag,
+      ...(bike.colors && bike.colors.length > 0
+        ? { color: bike.colors.map((c) => c.name) }
+        : {}),
+      ...(priceNum !== null
+        ? {
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "BRL",
+              price: priceNum.toFixed(2),
+              availability: "https://schema.org/InStock",
+              url: `${SITE_URL}/catalogo`,
+              seller: { "@type": "Organization", name: "Filadelfo Motors" },
+            },
+          }
+        : {}),
+    } satisfies Record<string, unknown>;
+  }, [open, bike]);
+
+  useStructuredData(
+    bike ? `ld-bike-${bike.name.replace(/\s+/g, "-").toLowerCase()}` : "ld-bike",
+    productLd,
+  );
+
   if (!bike) return null;
 
   if (isMobile) {
