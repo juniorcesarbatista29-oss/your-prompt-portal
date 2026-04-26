@@ -102,6 +102,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
                       alt={g.caption ?? buildBikeAlt(bike)}
                       className="w-full h-full object-contain p-4"
                       loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
                     />
                   </div>
                 </CarouselItem>
@@ -147,7 +148,13 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
                   i === activeIdx ? "border-brand-red" : "border-border"
                 }`}
               >
-                <img src={g.url} alt={g.caption ?? `${bike.name} — foto ${i + 1}`} className="w-full h-full object-contain" />
+                <img
+                  src={g.url}
+                  alt={g.caption ?? `${bike.name} — miniatura ${i + 1} de ${gallery.length}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-contain"
+                />
               </button>
             ))}
           </div>

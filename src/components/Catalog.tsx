@@ -142,6 +142,7 @@ export const Catalog = () => {
                   width={1024}
                   height={1024}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain p-3 md:p-4 transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
