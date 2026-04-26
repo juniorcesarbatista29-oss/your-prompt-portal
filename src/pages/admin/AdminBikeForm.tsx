@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { ArrowLeft, Upload, Star, Trash2, Loader2 } from "lucide-react";
+import { ArrowLeft, Upload, Star, Trash2, Loader2, Plus, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,8 @@ type ImageRow = {
   is_cover: boolean;
   display_order: number;
 };
+
+type ColorOpt = { name: string; hex: string };
 
 const badgeOptions = [
   { value: "none", label: "Nenhum" },
@@ -53,11 +55,14 @@ const AdminBikeForm = () => {
     autonomia: "",
     motor: "",
     velocidade: "",
+    weight_capacity: "",
     video_url: "",
     badge: "none",
     is_active: true,
     display_order: 0,
   });
+  const [colors, setColors] = useState<ColorOpt[]>([]);
+  const [newColor, setNewColor] = useState<ColorOpt>({ name: "", hex: "#000000" });
 
   useEffect(() => {
     if (isNew) return;
@@ -81,11 +86,20 @@ const AdminBikeForm = () => {
         autonomia: data.autonomia ?? "",
         motor: data.motor ?? "",
         velocidade: data.velocidade ?? "",
+        weight_capacity: (data as any).weight_capacity ?? "",
         video_url: data.video_url ?? "",
         badge: data.badge ?? "none",
         is_active: data.is_active,
         display_order: data.display_order ?? 0,
       });
+      const rawColors = (data as any).colors;
+      if (Array.isArray(rawColors)) {
+        setColors(
+          rawColors
+            .filter((c: any) => c && typeof c.name === "string" && typeof c.hex === "string")
+            .map((c: any) => ({ name: c.name, hex: c.hex })),
+        );
+      }
       setImages(
         (data.bike_images ?? []).sort(
           (a: ImageRow, b: ImageRow) => a.display_order - b.display_order,
@@ -104,7 +118,7 @@ const AdminBikeForm = () => {
       return;
     }
     setSaving(true);
-    const payload = {
+    const payload: any = {
       name: form.name,
       tag: form.tag,
       description: form.description || null,
@@ -113,6 +127,8 @@ const AdminBikeForm = () => {
       autonomia: form.autonomia || null,
       motor: form.motor || null,
       velocidade: form.velocidade || null,
+      weight_capacity: form.weight_capacity || null,
+      colors: colors,
       video_url: form.video_url || null,
       badge: form.badge === "none" ? null : (form.badge as any),
       is_active: form.is_active,
@@ -274,9 +290,82 @@ const AdminBikeForm = () => {
             <Label htmlFor="velocidade">Vel. máx.</Label>
             <Input id="velocidade" value={form.velocidade} placeholder="45km/h" onChange={(e) => update("velocidade", e.target.value)} />
           </div>
+          <div>
+            <Label htmlFor="weight_capacity">Peso suportado</Label>
+            <Input id="weight_capacity" value={form.weight_capacity} placeholder="120kg" onChange={(e) => update("weight_capacity", e.target.value)} />
+          </div>
           <div className="md:col-span-3">
             <Label htmlFor="video_url">Link do vídeo (YouTube/Vimeo)</Label>
             <Input id="video_url" type="url" value={form.video_url} placeholder="https://youtube.com/watch?v=…" onChange={(e) => update("video_url", e.target.value)} />
+          </div>
+        </section>
+
+        <section className="p-5 border border-border rounded-md bg-card space-y-4">
+          <div>
+            <h2 className="font-display text-xl uppercase">Cores disponíveis</h2>
+            <p className="text-sm text-muted-foreground">Adicione todas as cores em que esta bike é vendida. Aparecem como bolinhas para o cliente escolher.</p>
+          </div>
+
+          {colors.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {colors.map((c, idx) => (
+                <div
+                  key={`${c.hex}-${idx}`}
+                  className="flex items-center gap-2 pl-1.5 pr-1 py-1 rounded-full border border-border bg-background"
+                >
+                  <span
+                    className="size-6 rounded-full border border-border shadow-inner"
+                    style={{ backgroundColor: c.hex }}
+                    aria-hidden
+                  />
+                  <span className="text-sm">{c.name}</span>
+                  <button
+                    type="button"
+                    aria-label={`Remover cor ${c.name}`}
+                    onClick={() => setColors((prev) => prev.filter((_, i) => i !== idx))}
+                    className="size-6 rounded-full hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-destructive"
+                  >
+                    <X className="size-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-2 items-end">
+            <div>
+              <Label htmlFor="color_name">Nome da cor</Label>
+              <Input
+                id="color_name"
+                value={newColor.name}
+                placeholder="Ex.: Preto fosco"
+                onChange={(e) => setNewColor((p) => ({ ...p, name: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="color_hex">Cor</Label>
+              <input
+                id="color_hex"
+                type="color"
+                value={newColor.hex}
+                onChange={(e) => setNewColor((p) => ({ ...p, hex: e.target.value }))}
+                className="h-10 w-16 rounded-md border border-input bg-background cursor-pointer"
+              />
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                if (!newColor.name.trim()) {
+                  toast({ title: "Dê um nome para a cor", variant: "destructive" });
+                  return;
+                }
+                setColors((prev) => [...prev, { name: newColor.name.trim(), hex: newColor.hex }]);
+                setNewColor({ name: "", hex: "#000000" });
+              }}
+            >
+              <Plus className="size-4" /> Adicionar cor
+            </Button>
           </div>
         </section>
 
@@ -302,7 +391,7 @@ const AdminBikeForm = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="font-display text-2xl uppercase">Fotos</h2>
-              <p className="text-sm text-muted-foreground">A foto marcada com estrela é a capa.</p>
+              <p className="text-sm text-muted-foreground">Selecione várias de uma vez. A foto marcada com estrela é a capa.</p>
             </div>
             <label className="cursor-pointer">
               <input

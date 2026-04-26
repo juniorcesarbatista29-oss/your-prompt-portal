@@ -56,6 +56,7 @@ export type Database = {
         Row: {
           autonomia: string | null
           badge: Database["public"]["Enums"]["bike_badge"] | null
+          colors: Json
           created_at: string
           description: string | null
           display_order: number
@@ -69,10 +70,12 @@ export type Database = {
           updated_at: string
           velocidade: string | null
           video_url: string | null
+          weight_capacity: string | null
         }
         Insert: {
           autonomia?: string | null
           badge?: Database["public"]["Enums"]["bike_badge"] | null
+          colors?: Json
           created_at?: string
           description?: string | null
           display_order?: number
@@ -86,10 +89,12 @@ export type Database = {
           updated_at?: string
           velocidade?: string | null
           video_url?: string | null
+          weight_capacity?: string | null
         }
         Update: {
           autonomia?: string | null
           badge?: Database["public"]["Enums"]["bike_badge"] | null
+          colors?: Json
           created_at?: string
           description?: string | null
           display_order?: number
@@ -103,6 +108,7 @@ export type Database = {
           updated_at?: string
           velocidade?: string | null
           video_url?: string | null
+          weight_capacity?: string | null
         }
         Relationships: []
       }
