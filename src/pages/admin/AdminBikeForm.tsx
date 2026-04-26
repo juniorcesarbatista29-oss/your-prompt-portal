@@ -86,11 +86,20 @@ const AdminBikeForm = () => {
         autonomia: data.autonomia ?? "",
         motor: data.motor ?? "",
         velocidade: data.velocidade ?? "",
+        weight_capacity: (data as any).weight_capacity ?? "",
         video_url: data.video_url ?? "",
         badge: data.badge ?? "none",
         is_active: data.is_active,
         display_order: data.display_order ?? 0,
       });
+      const rawColors = (data as any).colors;
+      if (Array.isArray(rawColors)) {
+        setColors(
+          rawColors
+            .filter((c: any) => c && typeof c.name === "string" && typeof c.hex === "string")
+            .map((c: any) => ({ name: c.name, hex: c.hex })),
+        );
+      }
       setImages(
         (data.bike_images ?? []).sort(
           (a: ImageRow, b: ImageRow) => a.display_order - b.display_order,
