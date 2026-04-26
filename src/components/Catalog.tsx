@@ -76,6 +76,7 @@ export const Catalog = () => {
         .slice()
         .sort((a: any, c: any) => a.display_order - c.display_order);
       const cover = imgs.find((i: any) => i.is_cover) ?? imgs[0];
+      const rawColors = Array.isArray(b.colors) ? b.colors : [];
       return {
         name: b.name,
         tag: b.tag,
@@ -88,6 +89,10 @@ export const Catalog = () => {
           motor: b.motor ?? "—",
           vel: b.velocidade ?? "—",
         },
+        weightCapacity: b.weight_capacity ?? null,
+        colors: rawColors
+          .filter((c: any) => c && typeof c.name === "string" && typeof c.hex === "string")
+          .map((c: any) => ({ name: c.name, hex: c.hex })),
         description: b.description ?? undefined,
         videoUrl: b.video_url,
         gallery: imgs.map((i: any) => ({ url: i.image_url, caption: i.caption })),
