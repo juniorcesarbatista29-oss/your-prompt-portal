@@ -71,7 +71,8 @@ export const Catalog = () => {
 
   const products: Bike[] = (() => {
     if (!dbBikes || dbBikes.length === 0) return fallbackProducts;
-    return dbBikes.map((b: any) => {
+    // Home shows only the first 4 bikes as highlights — full list lives on /catalogo
+    return dbBikes.slice(0, 4).map((b: any) => {
       const imgs = (b.bike_images ?? [])
         .slice()
         .sort((a: any, c: any) => a.display_order - c.display_order);
