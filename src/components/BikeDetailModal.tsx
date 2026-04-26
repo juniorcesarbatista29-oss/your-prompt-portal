@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight, Share2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
