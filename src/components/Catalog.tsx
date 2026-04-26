@@ -148,17 +148,6 @@ export const Catalog = () => {
 
               <div className="p-4 sm:p-5 md:p-6">
                 <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
-                {p.weightCapacity && (
-                  <div className="mt-2 flex items-center gap-1.5 sm:gap-2 text-muted-foreground flex-wrap">
-                    <Weight className="size-3 sm:size-3.5 shrink-0" strokeWidth={1.5} />
-                    <span className="text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase">
-                      Peso suportado
-                    </span>
-                    <span className="text-[11px] sm:text-xs font-semibold text-foreground tabular-nums">
-                      {p.weightCapacity}
-                    </span>
-                  </div>
-                )}
 
                 {p.colors && p.colors.length > 0 && (
                   <div className="mt-2 flex items-center gap-1.5">
@@ -176,7 +165,9 @@ export const Catalog = () => {
                   </div>
                 )}
 
-                <div className="mt-3 md:mt-4 grid grid-cols-3 gap-1.5 sm:gap-2 py-3 md:py-4 border-y border-border">
+                <div
+                  className={`mt-3 md:mt-4 grid ${p.weightCapacity ? "grid-cols-4" : "grid-cols-3"} gap-1.5 sm:gap-2 py-3 md:py-4 border-y border-border`}
+                >
                   {Object.entries(p.specs).map(([k, v]) => (
                     <div key={k}>
                       <div className="text-[9px] tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground">
@@ -185,6 +176,16 @@ export const Catalog = () => {
                       <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-0.5 break-words leading-tight">{v}</div>
                     </div>
                   ))}
+                  {p.weightCapacity && (
+                    <div>
+                      <div className="text-[9px] tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground">
+                        Peso
+                      </div>
+                      <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-0.5 break-words leading-tight tabular-nums">
+                        {p.weightCapacity}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-3 md:mt-4 flex items-end justify-between gap-3">
