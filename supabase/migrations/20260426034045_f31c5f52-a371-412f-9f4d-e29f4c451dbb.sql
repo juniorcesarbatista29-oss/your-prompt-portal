@@ -1,0 +1,1 @@
+UPDATE public.site_settings SET phone = '(17) 99215-5535', whatsapp_number = '5517992155535' WHERE id = 'a5522495-0774-4d30-885e-e165c08b6da8';
