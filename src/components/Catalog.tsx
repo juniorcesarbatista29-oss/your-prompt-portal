@@ -146,8 +146,10 @@ export const Catalog = () => {
                 />
               </div>
 
-              <div className="p-4 sm:p-5 md:p-6">
-                <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
+              <div className="p-3.5 xs:p-4 sm:p-5 md:p-6">
+                <h3 className="font-display text-lg xs:text-xl md:text-2xl uppercase leading-[1.05] break-words">
+                  {p.name}
+                </h3>
 
                 {p.colors && p.colors.length > 0 && (
                   <div className="mt-2 flex items-center gap-1.5">
@@ -155,7 +157,7 @@ export const Catalog = () => {
                       <span
                         key={`${c.hex}-${idx}`}
                         title={c.name}
-                        className="size-3.5 rounded-full border border-border shadow-inner"
+                        className="size-3 xs:size-3.5 rounded-full border border-border shadow-inner"
                         style={{ backgroundColor: c.hex }}
                       />
                     ))}
@@ -165,13 +167,13 @@ export const Catalog = () => {
                   </div>
                 )}
 
-                <div className="mt-3 md:mt-4 grid grid-cols-3 gap-2 sm:gap-3 py-3 md:py-4 border-y border-border">
+                <div className="mt-3 md:mt-4 grid grid-cols-3 gap-1.5 xs:gap-2 sm:gap-3 py-3 md:py-4 border-y border-border">
                   {Object.entries(p.specs).map(([k, v]) => (
                     <div key={k} className="min-w-0">
-                      <div className="text-[9px] tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground truncate">
+                      <div className="text-[8px] xs:text-[9px] tracking-[0.1em] xs:tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground truncate leading-tight">
                         {k}
                       </div>
-                      <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-1 leading-tight tabular-nums">
+                      <div className="text-[10.5px] xs:text-[11px] sm:text-xs md:text-sm font-semibold mt-1 leading-[1.15] tabular-nums break-words">
                         {v}
                       </div>
                     </div>
@@ -179,23 +181,25 @@ export const Catalog = () => {
                 </div>
 
                 {p.weightCapacity && (
-                  <div className="mt-3 flex items-baseline justify-between gap-2">
-                    <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                  <div className="mt-2.5 xs:mt-3 flex items-baseline justify-between gap-2">
+                    <span className="text-[8.5px] xs:text-[9px] sm:text-[10px] tracking-[0.15em] xs:tracking-[0.2em] uppercase text-muted-foreground leading-tight">
                       Peso suportado
                     </span>
-                    <span className="text-xs sm:text-sm font-semibold text-foreground tabular-nums">
+                    <span className="text-[11px] xs:text-xs sm:text-sm font-semibold text-foreground tabular-nums leading-tight">
                       {p.weightCapacity}
                     </span>
                   </div>
                 )}
 
-                <div className="mt-3 md:mt-4 flex items-end justify-between gap-3">
+                <div className="mt-3 md:mt-4 flex items-end justify-between gap-2 xs:gap-3">
                   <div className="min-w-0">
-                    <div className="text-[10px] tracking-widest uppercase text-muted-foreground">
+                    <div className="text-[9px] xs:text-[10px] tracking-[0.18em] xs:tracking-widest uppercase text-muted-foreground leading-tight">
                       A partir de
                     </div>
-                    <div className="font-display text-[1.35rem] md:text-2xl leading-none">R$ {p.price}</div>
-                    <div className="text-[10px] md:text-xs text-muted-foreground truncate">
+                    <div className="font-display text-[1.2rem] xs:text-[1.35rem] md:text-2xl leading-none mt-0.5">
+                      R$ {p.price}
+                    </div>
+                    <div className="text-[9.5px] xs:text-[10px] md:text-xs text-muted-foreground truncate mt-0.5">
                       {p.parcel}
                     </div>
                   </div>
@@ -206,7 +210,7 @@ export const Catalog = () => {
                       openBike(p);
                     }}
                     aria-label={`Ver ${p.name}`}
-                    className="size-10 md:size-11 shrink-0 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-brand-red hover:text-primary-foreground transition-all group-hover:rotate-[-45deg]"
+                    className="size-9 xs:size-10 md:size-11 shrink-0 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-brand-red hover:text-primary-foreground transition-all group-hover:rotate-[-45deg]"
                   >
                     <ArrowRight className="size-4" />
                   </button>
