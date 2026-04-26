@@ -148,7 +148,13 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
                   i === activeIdx ? "border-brand-red" : "border-border"
                 }`}
               >
-                <img src={g.url} alt={g.caption ?? `${bike.name} — foto ${i + 1}`} className="w-full h-full object-contain" />
+                <img
+                  src={g.url}
+                  alt={g.caption ?? `${bike.name} — miniatura ${i + 1} de ${gallery.length}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-contain"
+                />
               </button>
             ))}
           </div>
