@@ -4,10 +4,27 @@ import { useCanonical } from "@/hooks/useCanonical";
 
 const NotFound = () => {
   const location = useLocation();
-  useCanonical(location.pathname);
+  useCanonical(location.pathname, {
+    title: "Página não encontrada | Filadelfo Motors",
+    description:
+      "A página que você procura não existe. Volte ao início e descubra as bicicletas elétricas premium da Filadelfo Motors.",
+  });
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    // Tell crawlers not to index 404s
+    let robots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.setAttribute("name", "robots");
+      document.head.appendChild(robots);
+    }
+    const previous = robots.getAttribute("content");
+    robots.setAttribute("content", "noindex, follow");
+    return () => {
+      if (previous) robots?.setAttribute("content", previous);
+      else robots?.remove();
+    };
   }, [location.pathname]);
 
   return (
