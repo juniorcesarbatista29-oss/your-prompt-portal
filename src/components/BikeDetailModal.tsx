@@ -250,6 +250,30 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
             </Button>
           </a>
         )}
+        <Button
+          variant="ghost"
+          size="lg"
+          className="w-full mt-3"
+          onClick={async () => {
+            const shareUrl = `${SITE_URL}/catalogo?bike=${slugify(bike.name)}`;
+            const shareData = {
+              title: `${bike.name} | Filadelfo Motors`,
+              text: `Confira a ${bike.name} — bicicleta elétrica Filadelfo Motors.`,
+              url: shareUrl,
+            };
+            try {
+              if (navigator.share) {
+                await navigator.share(shareData);
+              } else {
+                await navigator.clipboard.writeText(shareUrl);
+              }
+            } catch {
+              /* user cancelled or clipboard blocked — silent */
+            }
+          }}
+        >
+          <Share2 className="size-4" /> Compartilhar
+        </Button>
         <p className="mt-3 text-center text-[11px] text-muted-foreground">
           Atendimento direto com o time de vendas · (17) 99215-5535
         </p>
