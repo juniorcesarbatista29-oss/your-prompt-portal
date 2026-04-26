@@ -353,6 +353,21 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
     };
   }, [open, bike]);
 
+  // Keep the URL in sync with the open bike so the link is shareable
+  // (?bike=<slug>). Restore the original URL when the modal closes.
+  useEffect(() => {
+    if (!open || !bike) return;
+    const slug = slugify(bike.name);
+    const previousUrl =
+      window.location.pathname + window.location.search + window.location.hash;
+    const url = new URL(window.location.href);
+    url.searchParams.set("bike", slug);
+    window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    return () => {
+      window.history.replaceState({}, "", previousUrl);
+    };
+  }, [open, bike]);
+
   // JSON-LD Product schema (rich snippets) — only while the modal is open.
   const productLd = useMemo(() => {
     if (!open || !bike) return null;
