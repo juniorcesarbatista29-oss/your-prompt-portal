@@ -287,7 +287,7 @@ const Catalogo = () => {
                     </div>
 
                     <div className="p-5 md:p-6">
-                      <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
+                      <h2 className="font-display text-xl md:text-2xl uppercase">{p.name}</h2>
 
                       {p.colors && p.colors.length > 0 && (
                         <div className="mt-2 flex items-center gap-1.5">

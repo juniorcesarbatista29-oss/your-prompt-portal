@@ -158,7 +158,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
       </div>
 
       <div className="min-w-0 px-1 md:px-0">
-        <h3 className="font-display text-2xl md:text-3xl uppercase">{bike.name}</h3>
+        <h2 className="font-display text-2xl md:text-3xl uppercase">{bike.name}</h2>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           {bike.description ??
             `A ${bike.name} foi projetada para entregar performance, autonomia e design. Componentes premium, motor brushless e bateria de lítio certificada.`}

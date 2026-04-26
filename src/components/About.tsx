@@ -46,7 +46,7 @@ export const About = () => {
           <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Sobre nós
           </span>
-          <h2 className="font-display text-[2.25rem] leading-[0.95] sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 text-balance">
+          <h1 className="font-display text-[2.25rem] leading-[0.95] sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 text-balance">
             {titleA}
             {titleB && (
               <>
@@ -54,7 +54,7 @@ export const About = () => {
                 <span className="text-brand-red">{titleB}</span>
               </>
             )}
-          </h2>
+          </h1>
           <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
             {aboutParagraph}
           </p>
@@ -100,10 +100,10 @@ export const About = () => {
                 <Leaf className="size-3.5" />
                 Planeta em primeiro lugar
               </span>
-              <h3 className="font-display text-[1.75rem] leading-[1] sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 md:leading-[0.95] text-balance">
+              <h2 className="font-display text-[1.75rem] leading-[1] sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 md:leading-[0.95] text-balance">
                 Mobilidade que{" "}
                 <span className="text-brand-red">respira melhor</span>.
-              </h3>
+              </h2>
               <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
                 Na Filadelfo Motors, cada bicicleta elétrica é um manifesto
                 silencioso a favor do planeta. Acreditamos que o futuro das
@@ -144,7 +144,7 @@ export const About = () => {
                   <div className="size-10 md:size-12 rounded-md bg-secondary border border-border flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:border-foreground transition-all shrink-0">
                     <Icon className="size-5 text-foreground group-hover:text-background transition-colors" />
                   </div>
-                  <h4 className="font-display text-lg md:text-xl uppercase mb-2 leading-tight">{t}</h4>
+                  <h3 className="font-display text-lg md:text-xl uppercase mb-2 leading-tight">{t}</h3>
                   <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{d}</p>
                 </div>
               ))}
