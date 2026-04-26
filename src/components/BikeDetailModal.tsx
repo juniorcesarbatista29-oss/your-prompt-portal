@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
@@ -12,7 +12,17 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useStructuredData } from "@/hooks/useStructuredData";
 import { buildBikeAlt } from "@/lib/bike-alt";
+
+const SITE_URL = "https://filadelfomotors.com.br";
+
+/** Convert "12.345,67" (pt-BR) → 12345.67 for JSON-LD numeric price. */
+const parseBrPrice = (s: string): number | null => {
+  if (!s) return null;
+  const n = Number(String(s).replace(/\./g, "").replace(",", "."));
+  return Number.isFinite(n) ? n : null;
+};
 
 export type BikeColor = { name: string; hex: string };
 
