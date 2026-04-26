@@ -1,10 +1,20 @@
-import { useState } from "react";
-import { Battery, Gauge, Zap, X, MessageCircle, Play } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { buildBikeAlt } from "@/lib/bike-alt";
+
+export type BikeColor = { name: string; hex: string };
 
 export type Bike = {
   name: string;
@@ -14,6 +24,8 @@ export type Bike = {
   image: string;
   badge: string | null;
   specs: { autonomia: string; motor: string; vel: string };
+  weightCapacity?: string | null;
+  colors?: BikeColor[];
   description?: string;
   videoUrl?: string | null;
   gallery?: { url: string; caption?: string | null }[];
@@ -28,53 +40,111 @@ type Props = {
 };
 
 const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
+  const gallery = bike.gallery && bike.gallery.length > 0 ? bike.gallery : [{ url: bike.image, caption: null }];
+  const colors = bike.colors ?? [];
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [selectedColor, setSelectedColor] = useState<string | null>(colors[0]?.name ?? null);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setActiveIdx(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    onSelect();
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  const goTo = (idx: number) => {
+    setActiveIdx(idx);
+    api?.scrollTo(idx);
+  };
+
+  const colorMsg = selectedColor ? ` na cor ${selectedColor}` : "";
   const message = encodeURIComponent(
-    `Olá! Tenho interesse na bicicleta elétrica ${bike.name} (${bike.tag}). Pode me passar mais informações?`
+    `Olá! Tenho interesse na bicicleta elétrica ${bike.name} (${bike.tag})${colorMsg}. Pode me passar mais informações?`,
   );
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-  const gallery = bike.gallery && bike.gallery.length > 0 ? bike.gallery : [{ url: bike.image, caption: null }];
-  const [activeIdx, setActiveIdx] = useState(0);
-  const active = gallery[Math.min(activeIdx, gallery.length - 1)];
+
+  const activeCaption = gallery[Math.min(activeIdx, gallery.length - 1)]?.caption;
 
   return (
     <div className="grid h-full gap-5 md:grid-cols-[minmax(0,1fr)_minmax(22rem,0.86fr)] md:items-start md:gap-7">
       <div className="min-w-0">
-      <div className="relative aspect-[4/3] sm:aspect-square bg-brand-light overflow-hidden rounded-md">
-        {bike.badge && (
-          <span className="absolute top-3 left-3 z-10 bg-brand-red text-primary-foreground text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-sm">
-            {bike.badge}
+        <div className="relative">
+          {bike.badge && (
+            <span className="absolute top-3 left-3 z-20 bg-brand-red text-primary-foreground text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-sm">
+              {bike.badge}
+            </span>
+          )}
+          <span className="absolute top-3 right-3 z-20 text-[10px] tracking-widest uppercase text-muted-foreground bg-background/80 px-2 py-1 rounded-sm">
+            {bike.tag}
           </span>
-        )}
-        <span className="absolute top-3 right-3 z-10 text-[10px] tracking-widest uppercase text-muted-foreground bg-background/80 px-2 py-1 rounded-sm">
-          {bike.tag}
-        </span>
-        <img
-          src={active.url}
-          alt={buildBikeAlt(bike)}
-          className="w-full h-full object-contain p-4"
-          loading="eager"
-        />
-      </div>
 
-      {gallery.length > 1 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-          {gallery.map((g, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setActiveIdx(i)}
-              className={`size-14 shrink-0 rounded border-2 overflow-hidden bg-brand-light ${
-                i === activeIdx ? "border-brand-red" : "border-border"
-              }`}
-            >
-              <img src={g.url} alt={g.caption ?? `${bike.name} — foto ${i + 1}`} className="w-full h-full object-contain" />
-            </button>
-          ))}
+          <Carousel setApi={setApi} opts={{ loop: gallery.length > 1 }} className="w-full">
+            <CarouselContent>
+              {gallery.map((g, i) => (
+                <CarouselItem key={i}>
+                  <div className="relative aspect-[4/3] sm:aspect-square bg-brand-light overflow-hidden rounded-md">
+                    <img
+                      src={g.url}
+                      alt={g.caption ?? buildBikeAlt(bike)}
+                      className="w-full h-full object-contain p-4"
+                      loading={i === 0 ? "eager" : "lazy"}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {gallery.length > 1 && (
+              <>
+                <CarouselPrevious className="left-2 size-9 bg-background/90 hover:bg-foreground hover:text-background border-border">
+                  <ChevronLeft className="size-4" />
+                </CarouselPrevious>
+                <CarouselNext className="right-2 size-9 bg-background/90 hover:bg-foreground hover:text-background border-border">
+                  <ChevronRight className="size-4" />
+                </CarouselNext>
+              </>
+            )}
+          </Carousel>
+
+          {gallery.length > 1 && (
+            <div className="mt-2 flex items-center justify-center gap-1.5">
+              {gallery.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Ir para foto ${i + 1}`}
+                  onClick={() => goTo(i)}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === activeIdx ? "w-6 bg-brand-red" : "w-1.5 bg-border"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
-      {active.caption && (
-        <p className="mt-2 text-xs text-muted-foreground italic px-1">{active.caption}</p>
-      )}
+
+        {gallery.length > 1 && (
+          <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+            {gallery.map((g, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goTo(i)}
+                className={`size-14 shrink-0 rounded border-2 overflow-hidden bg-brand-light ${
+                  i === activeIdx ? "border-brand-red" : "border-border"
+                }`}
+              >
+                <img src={g.url} alt={g.caption ?? `${bike.name} — foto ${i + 1}`} className="w-full h-full object-contain" />
+              </button>
+            ))}
+          </div>
+        )}
+        {activeCaption && (
+          <p className="mt-2 text-xs text-muted-foreground italic px-1">{activeCaption}</p>
+        )}
       </div>
 
       <div className="min-w-0 px-1 md:px-0">
@@ -83,6 +153,33 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
           {bike.description ??
             `A ${bike.name} foi projetada para entregar performance, autonomia e design. Componentes premium, motor brushless e bateria de lítio certificada.`}
         </p>
+
+        {colors.length > 0 && (
+          <div className="mt-5">
+            <div className="text-[10px] tracking-widest uppercase text-muted-foreground mb-2">
+              Cor: <span className="text-foreground font-semibold normal-case tracking-normal">{selectedColor}</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {colors.map((c) => {
+                const active = selectedColor === c.name;
+                return (
+                  <button
+                    key={c.name}
+                    type="button"
+                    onClick={() => setSelectedColor(c.name)}
+                    aria-label={`Escolher cor ${c.name}`}
+                    aria-pressed={active}
+                    className={`size-9 rounded-full border-2 transition-all ${
+                      active ? "border-brand-red scale-110 shadow-soft" : "border-border hover:border-foreground/40"
+                    }`}
+                    style={{ backgroundColor: c.hex }}
+                    title={c.name}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3 py-4 border-y border-border">
           {[
@@ -99,6 +196,14 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
             </div>
           ))}
         </div>
+
+        {bike.weightCapacity && (
+          <div className="mt-4 flex items-center gap-2 text-sm">
+            <Weight className="size-4 text-brand-red shrink-0" />
+            <span className="text-muted-foreground">Suporta até</span>
+            <span className="font-semibold">{bike.weightCapacity}</span>
+          </div>
+        )}
 
         <div className="mt-5 flex flex-col xs:flex-row xs:items-baseline xs:justify-between gap-2 xs:gap-3">
           <div>
@@ -153,7 +258,7 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
             <button
               type="button"
               aria-label="Fechar"
-              className="absolute right-4 top-4 z-20 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center text-foreground shadow-soft transition-all hover:bg-foreground hover:text-background"
+              className="absolute right-4 top-4 z-30 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center text-foreground shadow-soft transition-all hover:bg-foreground hover:text-background"
             >
               <X className="size-4" />
             </button>
@@ -180,7 +285,7 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
         <button
           onClick={() => onOpenChange(false)}
           aria-label="Fechar"
-          className="absolute right-4 top-4 z-20 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center shadow-soft hover:bg-foreground hover:text-background transition-all"
+          className="absolute right-4 top-4 z-30 size-9 rounded-full bg-background/90 border border-border flex items-center justify-center shadow-soft hover:bg-foreground hover:text-background transition-all"
         >
           <X className="size-4" />
         </button>
