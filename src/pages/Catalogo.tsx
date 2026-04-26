@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Search, SlidersHorizontal, X } from "lucide-react";
 import { Header } from "@/components/Header";
@@ -30,7 +30,11 @@ const parseNum = (s: string | undefined | null): number | null => {
 };
 
 const Catalogo = () => {
-  useCanonical("/catalogo");
+  useCanonical("/catalogo", {
+    title: "Catálogo de Bicicletas Elétricas | Filadelfo Motors",
+    description:
+      "Explore o catálogo completo Filadelfo Motors: bicicletas elétricas urbanas, mopeds, mountain e dobráveis. Performance, autonomia e design premium para sua mobilidade.",
+  });
   const [selected, setSelected] = useState<Bike | null>(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -38,9 +42,6 @@ const Catalogo = () => {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [maxPrice, setMaxPrice] = useState(0);
 
-  useEffect(() => {
-    document.title = "Catálogo · Filadelfo Motors";
-  }, []);
 
   const { data, isLoading } = useQuery({
     queryKey: queryKeys.bikes,
