@@ -84,7 +84,13 @@ export const OfferPopup = () => {
         <DialogDescription className="sr-only">{offer.subtitle ?? ""}</DialogDescription>
         {offer.image_url && (
           <div className="aspect-[16/10] bg-brand-light">
-            <img src={offer.image_url} alt={offer.title} className="w-full h-full object-cover" />
+            <img
+              src={offer.image_url}
+              alt={`Oferta Filadelfo Motors: ${offer.title}${offer.subtitle ? ` — ${offer.subtitle}` : ""}`}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
           </div>
         )}
         <div className="p-6 text-center">
