@@ -1,10 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Search, SlidersHorizontal, X } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
-import { BikeDetailModal, type Bike } from "@/components/BikeDetailModal";
+import { BikeDetailModal, slugify, type Bike } from "@/components/BikeDetailModal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -126,6 +126,18 @@ const Catalogo = () => {
     setSelected(bike);
     setOpen(true);
   };
+
+  // Auto-open the modal when arriving with ?bike=<slug> in the URL
+  // (deep-link from social shares, WhatsApp, etc.). Runs once bikes load.
+  useEffect(() => {
+    if (open || bikes.length === 0) return;
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("bike");
+    if (!slug) return;
+    const match = bikes.find((b) => slugify(b.name) === slug);
+    if (match) openBike(match);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bikes]);
 
   return (
     <PageTransition>

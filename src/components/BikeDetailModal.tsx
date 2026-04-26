@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight, Share2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
@@ -250,6 +250,30 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
             </Button>
           </a>
         )}
+        <Button
+          variant="ghost"
+          size="lg"
+          className="w-full mt-3"
+          onClick={async () => {
+            const shareUrl = `${SITE_URL}/catalogo?bike=${slugify(bike.name)}`;
+            const shareData = {
+              title: `${bike.name} | Filadelfo Motors`,
+              text: `Confira a ${bike.name} — bicicleta elétrica Filadelfo Motors.`,
+              url: shareUrl,
+            };
+            try {
+              if (navigator.share) {
+                await navigator.share(shareData);
+              } else {
+                await navigator.clipboard.writeText(shareUrl);
+              }
+            } catch {
+              /* user cancelled or clipboard blocked — silent */
+            }
+          }}
+        >
+          <Share2 className="size-4" /> Compartilhar
+        </Button>
         <p className="mt-3 text-center text-[11px] text-muted-foreground">
           Atendimento direto com o time de vendas · (17) 99215-5535
         </p>
@@ -258,29 +282,113 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
   );
 };
 
+/**
+ * Upsert a meta tag and remember its previous value so we can restore it
+ * (or remove it if it didn't exist) once the modal closes.
+ */
+function setMeta(
+  attr: "name" | "property",
+  key: string,
+  value: string,
+): { restore: () => void } {
+  const selector = `meta[${attr}="${key}"]`;
+  let el = document.head.querySelector<HTMLMetaElement>(selector);
+  const existed = !!el;
+  const previous = el?.getAttribute("content") ?? null;
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", value);
+  return {
+    restore: () => {
+      if (!el) return;
+      if (existed && previous !== null) el.setAttribute("content", previous);
+      else el.remove();
+    },
+  };
+}
+
+export const slugify = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
   const isMobile = useIsMobile();
 
-  // Dynamic SEO while the bike modal is open: title pattern
-  // "[Nome do Veículo] | Filadelfo Motors" + matching meta description.
+  // Dynamic SEO + Open Graph while the bike modal is open.
+  // Title pattern: "[Nome do Veículo] | Filadelfo Motors".
+  // og:image is set to the bike's cover image so links shared on
+  // WhatsApp / Facebook / Twitter show the right car preview.
   useEffect(() => {
     if (!open || !bike) return;
     const previousTitle = document.title;
-    const metaDesc = document.head.querySelector<HTMLMetaElement>(
-      'meta[name="description"]',
-    );
-    const previousDesc = metaDesc?.getAttribute("content") ?? null;
-
-    document.title = `${bike.name} | Filadelfo Motors`;
-    const desc =
+    const slug = slugify(bike.name);
+    const shareUrl = `${SITE_URL}/catalogo?bike=${slug}`;
+    const description = (
       bike.description?.trim() ||
-      `${bike.name} (${bike.tag}) — bicicleta elétrica Filadelfo Motors. Autonomia ${bike.specs.autonomia}, motor ${bike.specs.motor}, velocidade ${bike.specs.vel}. A partir de R$ ${bike.price}.`;
-    if (metaDesc) metaDesc.setAttribute("content", desc.slice(0, 160));
+      `${bike.name} (${bike.tag}) — bicicleta elétrica Filadelfo Motors. Autonomia ${bike.specs.autonomia}, motor ${bike.specs.motor}, velocidade ${bike.specs.vel}. A partir de R$ ${bike.price}.`
+    ).slice(0, 200);
+    const title = `${bike.name} | Filadelfo Motors`;
+    const image = bike.image?.startsWith("http")
+      ? bike.image
+      : `${SITE_URL}${bike.image?.startsWith("/") ? "" : "/"}${bike.image ?? ""}`;
+    const imageAlt = `${bike.name} — bicicleta elétrica Filadelfo Motors`;
+
+    document.title = title;
+
+    // Update canonical to the deep-link URL so shares resolve back here.
+    const canonical = document.head.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
+    const previousCanonical = canonical?.getAttribute("href") ?? null;
+    if (canonical) canonical.setAttribute("href", shareUrl);
+
+    const restorers = [
+      setMeta("name", "description", description.slice(0, 160)),
+      // Open Graph
+      setMeta("property", "og:title", title),
+      setMeta("property", "og:description", description.slice(0, 200)),
+      setMeta("property", "og:image", image),
+      setMeta("property", "og:image:alt", imageAlt),
+      setMeta("property", "og:url", shareUrl),
+      setMeta("property", "og:type", "product"),
+      // Twitter Card
+      setMeta("name", "twitter:card", "summary_large_image"),
+      setMeta("name", "twitter:title", title),
+      setMeta("name", "twitter:description", description.slice(0, 200)),
+      setMeta("name", "twitter:image", image),
+      setMeta("name", "twitter:image:alt", imageAlt),
+      // Product specifics (used by Facebook/Pinterest crawlers)
+      setMeta("property", "product:price:amount", String(parseBrPrice(bike.price) ?? "")),
+      setMeta("property", "product:price:currency", "BRL"),
+    ];
 
     return () => {
       document.title = previousTitle;
-      if (metaDesc && previousDesc !== null)
-        metaDesc.setAttribute("content", previousDesc);
+      if (canonical && previousCanonical !== null)
+        canonical.setAttribute("href", previousCanonical);
+      restorers.forEach((r) => r.restore());
+    };
+  }, [open, bike]);
+
+  // Keep the URL in sync with the open bike so the link is shareable
+  // (?bike=<slug>). Restore the original URL when the modal closes.
+  useEffect(() => {
+    if (!open || !bike) return;
+    const slug = slugify(bike.name);
+    const previousUrl =
+      window.location.pathname + window.location.search + window.location.hash;
+    const url = new URL(window.location.href);
+    url.searchParams.set("bike", slug);
+    window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    return () => {
+      window.history.replaceState({}, "", previousUrl);
     };
   }, [open, bike]);
 
