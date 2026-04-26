@@ -8,10 +8,12 @@ export const About = () => {
     "about_paragraph",
     "A Filadelfo Motors nasceu da convicção de que a mobilidade urbana precisa ser silenciosa, inteligente e elétrica. Desenhamos cada modelo para durar e pedalar mais longe."
   );
-  // Highlight the last word in red for visual rhythm
-  const lastSpace = aboutTitle.lastIndexOf(" ");
-  const titleA = lastSpace > 0 ? aboutTitle.slice(0, lastSpace) : aboutTitle;
-  const titleB = lastSpace > 0 ? aboutTitle.slice(lastSpace + 1) : "";
+  // Highlight the LAST 1–2 words in red. If the title has 4+ words, paint the
+  // last two for visual balance (avoids a single short word stranded on its own line).
+  const words = aboutTitle.trim().split(/\s+/);
+  const highlightCount = words.length >= 4 ? 2 : 1;
+  const titleA = words.slice(0, words.length - highlightCount).join(" ");
+  const titleB = words.slice(words.length - highlightCount).join(" ");
   const stats = [
     { v: "359", l: "Clientes" },
     { v: "98%", l: "Satisfação" },
