@@ -97,7 +97,13 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="size-4 text-foreground/60 shrink-0" />
-                <a href={phoneTel} className="hover:text-brand-red transition-colors">
+                <a
+                  href={phoneHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Falar no WhatsApp ${phone}`}
+                  className="hover:text-brand-red transition-colors"
+                >
                   {phone}
                 </a>
               </li>
