@@ -8,10 +8,12 @@ export const About = () => {
     "about_paragraph",
     "A Filadelfo Motors nasceu da convicção de que a mobilidade urbana precisa ser silenciosa, inteligente e elétrica. Desenhamos cada modelo para durar e pedalar mais longe."
   );
-  // Highlight the last word in red for visual rhythm
-  const lastSpace = aboutTitle.lastIndexOf(" ");
-  const titleA = lastSpace > 0 ? aboutTitle.slice(0, lastSpace) : aboutTitle;
-  const titleB = lastSpace > 0 ? aboutTitle.slice(lastSpace + 1) : "";
+  // Highlight the LAST 1–2 words in red. If the title has 4+ words, paint the
+  // last two for visual balance (avoids a single short word stranded on its own line).
+  const words = aboutTitle.trim().split(/\s+/);
+  const highlightCount = words.length >= 4 ? 2 : 1;
+  const titleA = words.slice(0, words.length - highlightCount).join(" ");
+  const titleB = words.slice(words.length - highlightCount).join(" ");
   const stats = [
     { v: "359", l: "Clientes" },
     { v: "98%", l: "Satisfação" },
@@ -39,29 +41,29 @@ export const About = () => {
 
   return (
     <section id="sobre" className="relative section-y bg-background overflow-hidden">
-      <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-12 px-4">
+      <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-12 px-4 sm:px-6">
         <div className="md:col-span-5 md:sticky md:top-32 md:self-start">
           <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Sobre nós
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 leading-[0.9] text-balance">
+          <h2 className="font-display text-[2.25rem] leading-[0.95] sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 text-balance">
             {titleA}
             {titleB && (
               <>
-                <br />
+                {" "}
                 <span className="text-brand-red">{titleB}</span>
               </>
             )}
           </h2>
-          <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base">
+          <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
             {aboutParagraph}
           </p>
 
-          <div className="mt-8 md:mt-10 grid grid-cols-2 gap-4 md:gap-6">
+          <div className="mt-8 md:mt-10 grid grid-cols-2 gap-x-4 gap-y-6 md:gap-6">
             {stats.map((s) => (
-              <div key={s.l} className="border-t border-border pt-3 md:pt-4">
-                <div className="font-display text-3xl md:text-4xl text-foreground">{s.v}</div>
-                <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mt-1">
+              <div key={s.l} className="border-t border-border pt-3 md:pt-4 min-w-0">
+                <div className="font-display text-3xl md:text-4xl text-foreground leading-none">{s.v}</div>
+                <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mt-2 leading-tight">
                   {s.l}
                 </div>
               </div>
@@ -90,27 +92,26 @@ export const About = () => {
       </div>
 
       {/* Bloco: compromisso com o meio ambiente */}
-      <div className="container mx-auto px-4 mt-14 md:mt-28">
-        <div className="relative overflow-hidden rounded-lg border border-border bg-secondary/50 p-6 sm:p-10 md:p-14">
+      <div className="container mx-auto px-4 sm:px-6 mt-14 md:mt-28">
+        <div className="relative overflow-hidden rounded-lg border border-border bg-secondary/50 p-5 sm:p-10 md:p-14">
           <div className="relative grid md:grid-cols-12 gap-8 md:gap-12 items-start">
             <div className="md:col-span-5">
               <span className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
                 <Leaf className="size-3.5" />
                 Planeta em primeiro lugar
               </span>
-              <h3 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 leading-[0.95] text-balance">
-                Mobilidade que
-                <br />
+              <h3 className="font-display text-[1.75rem] leading-[1] sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 md:leading-[0.95] text-balance">
+                Mobilidade que{" "}
                 <span className="text-brand-red">respira melhor</span>.
               </h3>
-              <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base">
+              <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
                 Na Filadelfo Motors, cada bicicleta elétrica é um manifesto
                 silencioso a favor do planeta. Acreditamos que o futuro das
                 cidades passa por escolhas conscientes — menos combustão, menos
                 ruído, menos pressa cinzenta. Mais ar puro, mais espaço para o
                 que importa.
               </p>
-              <p className="mt-4 text-muted-foreground leading-relaxed text-sm md:text-base">
+              <p className="mt-4 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
                 Trabalhamos com fornecedores que compartilham nossos valores,
                 priorizamos componentes duráveis e recicláveis e desenhamos
                 cada modelo para durar anos — porque o produto mais sustentável
@@ -118,7 +119,7 @@ export const About = () => {
               </p>
             </div>
 
-            <div className="md:col-span-7 grid sm:grid-cols-3 gap-3 md:gap-4">
+            <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
               {[
                 {
                   icon: Wind,
@@ -138,12 +139,12 @@ export const About = () => {
               ].map(({ icon: Icon, t, d }) => (
                 <div
                   key={t}
-                  className="group bg-background border border-border rounded-md p-5 md:p-6 hover:border-foreground/30 transition-all"
+                  className="group bg-background border border-border rounded-md p-5 md:p-6 hover:border-foreground/30 transition-all flex flex-col"
                 >
-                  <div className="size-10 md:size-12 rounded-md bg-secondary border border-border flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:border-foreground transition-all">
+                  <div className="size-10 md:size-12 rounded-md bg-secondary border border-border flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:border-foreground transition-all shrink-0">
                     <Icon className="size-5 text-foreground group-hover:text-background transition-colors" />
                   </div>
-                  <h4 className="font-display text-lg md:text-xl uppercase mb-2">{t}</h4>
+                  <h4 className="font-display text-lg md:text-xl uppercase mb-2 leading-tight">{t}</h4>
                   <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{d}</p>
                 </div>
               ))}
