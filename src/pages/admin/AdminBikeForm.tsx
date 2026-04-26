@@ -118,7 +118,7 @@ const AdminBikeForm = () => {
       return;
     }
     setSaving(true);
-    const payload = {
+    const payload: any = {
       name: form.name,
       tag: form.tag,
       description: form.description || null,
@@ -127,6 +127,8 @@ const AdminBikeForm = () => {
       autonomia: form.autonomia || null,
       motor: form.motor || null,
       velocidade: form.velocidade || null,
+      weight_capacity: form.weight_capacity || null,
+      colors: colors,
       video_url: form.video_url || null,
       badge: form.badge === "none" ? null : (form.badge as any),
       is_active: form.is_active,
