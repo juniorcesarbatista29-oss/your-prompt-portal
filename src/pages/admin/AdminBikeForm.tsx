@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { ArrowLeft, Upload, Star, Trash2, Loader2 } from "lucide-react";
+import { ArrowLeft, Upload, Star, Trash2, Loader2, Plus, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,8 @@ type ImageRow = {
   is_cover: boolean;
   display_order: number;
 };
+
+type ColorOpt = { name: string; hex: string };
 
 const badgeOptions = [
   { value: "none", label: "Nenhum" },
@@ -53,11 +55,14 @@ const AdminBikeForm = () => {
     autonomia: "",
     motor: "",
     velocidade: "",
+    weight_capacity: "",
     video_url: "",
     badge: "none",
     is_active: true,
     display_order: 0,
   });
+  const [colors, setColors] = useState<ColorOpt[]>([]);
+  const [newColor, setNewColor] = useState<ColorOpt>({ name: "", hex: "#000000" });
 
   useEffect(() => {
     if (isNew) return;
