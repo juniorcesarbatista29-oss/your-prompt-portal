@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Weight } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
@@ -146,7 +146,15 @@ export const Catalog = () => {
               </div>
 
               <div className="p-4 sm:p-5 md:p-6">
-                <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
+                  {p.weightCapacity && (
+                    <span className="shrink-0 inline-flex items-center gap-1 bg-foreground text-background text-[9px] md:text-[10px] font-semibold tracking-widest uppercase px-2 py-1 rounded-sm">
+                      <Weight className="size-3" />
+                      {p.weightCapacity}
+                    </span>
+                  )}
+                </div>
 
                 {p.colors && p.colors.length > 0 && (
                   <div className="mt-2 flex items-center gap-1.5">
