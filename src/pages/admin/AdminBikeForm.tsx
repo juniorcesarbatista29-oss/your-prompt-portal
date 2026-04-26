@@ -391,7 +391,7 @@ const AdminBikeForm = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="font-display text-2xl uppercase">Fotos</h2>
-              <p className="text-sm text-muted-foreground">A foto marcada com estrela é a capa.</p>
+              <p className="text-sm text-muted-foreground">Selecione várias de uma vez. A foto marcada com estrela é a capa.</p>
             </div>
             <label className="cursor-pointer">
               <input
