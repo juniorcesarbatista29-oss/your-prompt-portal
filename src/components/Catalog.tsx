@@ -148,6 +148,22 @@ export const Catalog = () => {
               <div className="p-4 sm:p-5 md:p-6">
                 <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
 
+                {p.colors && p.colors.length > 0 && (
+                  <div className="mt-2 flex items-center gap-1.5">
+                    {p.colors.slice(0, 5).map((c, idx) => (
+                      <span
+                        key={`${c.hex}-${idx}`}
+                        title={c.name}
+                        className="size-3.5 rounded-full border border-border shadow-inner"
+                        style={{ backgroundColor: c.hex }}
+                      />
+                    ))}
+                    {p.colors.length > 5 && (
+                      <span className="text-[10px] text-muted-foreground">+{p.colors.length - 5}</span>
+                    )}
+                  </div>
+                )}
+
                 <div className="mt-3 md:mt-4 grid grid-cols-3 gap-1.5 sm:gap-2 py-3 md:py-4 border-y border-border">
                   {Object.entries(p.specs).map(([k, v]) => (
                     <div key={k}>
