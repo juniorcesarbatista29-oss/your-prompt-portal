@@ -92,27 +92,26 @@ export const About = () => {
       </div>
 
       {/* Bloco: compromisso com o meio ambiente */}
-      <div className="container mx-auto px-4 mt-14 md:mt-28">
-        <div className="relative overflow-hidden rounded-lg border border-border bg-secondary/50 p-6 sm:p-10 md:p-14">
+      <div className="container mx-auto px-4 sm:px-6 mt-14 md:mt-28">
+        <div className="relative overflow-hidden rounded-lg border border-border bg-secondary/50 p-5 sm:p-10 md:p-14">
           <div className="relative grid md:grid-cols-12 gap-8 md:gap-12 items-start">
             <div className="md:col-span-5">
               <span className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
                 <Leaf className="size-3.5" />
                 Planeta em primeiro lugar
               </span>
-              <h3 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 leading-[0.95] text-balance">
-                Mobilidade que
-                <br />
+              <h3 className="font-display text-[1.75rem] leading-[1] sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 md:leading-[0.95] text-balance">
+                Mobilidade que{" "}
                 <span className="text-brand-red">respira melhor</span>.
               </h3>
-              <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base">
+              <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
                 Na Filadelfo Motors, cada bicicleta elétrica é um manifesto
                 silencioso a favor do planeta. Acreditamos que o futuro das
                 cidades passa por escolhas conscientes — menos combustão, menos
                 ruído, menos pressa cinzenta. Mais ar puro, mais espaço para o
                 que importa.
               </p>
-              <p className="mt-4 text-muted-foreground leading-relaxed text-sm md:text-base">
+              <p className="mt-4 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
                 Trabalhamos com fornecedores que compartilham nossos valores,
                 priorizamos componentes duráveis e recicláveis e desenhamos
                 cada modelo para durar anos — porque o produto mais sustentável
@@ -120,7 +119,7 @@ export const About = () => {
               </p>
             </div>
 
-            <div className="md:col-span-7 grid sm:grid-cols-3 gap-3 md:gap-4">
+            <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
               {[
                 {
                   icon: Wind,
@@ -140,12 +139,12 @@ export const About = () => {
               ].map(({ icon: Icon, t, d }) => (
                 <div
                   key={t}
-                  className="group bg-background border border-border rounded-md p-5 md:p-6 hover:border-foreground/30 transition-all"
+                  className="group bg-background border border-border rounded-md p-5 md:p-6 hover:border-foreground/30 transition-all flex flex-col"
                 >
-                  <div className="size-10 md:size-12 rounded-md bg-secondary border border-border flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:border-foreground transition-all">
+                  <div className="size-10 md:size-12 rounded-md bg-secondary border border-border flex items-center justify-center mb-4 group-hover:bg-foreground group-hover:border-foreground transition-all shrink-0">
                     <Icon className="size-5 text-foreground group-hover:text-background transition-colors" />
                   </div>
-                  <h4 className="font-display text-lg md:text-xl uppercase mb-2">{t}</h4>
+                  <h4 className="font-display text-lg md:text-xl uppercase mb-2 leading-tight">{t}</h4>
                   <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{d}</p>
                 </div>
               ))}
