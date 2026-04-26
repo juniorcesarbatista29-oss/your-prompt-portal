@@ -100,10 +100,10 @@ export const About = () => {
                 <Leaf className="size-3.5" />
                 Planeta em primeiro lugar
               </span>
-              <h3 className="font-display text-[1.75rem] leading-[1] sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 md:leading-[0.95] text-balance">
+              <h2 className="font-display text-[1.75rem] leading-[1] sm:text-4xl md:text-6xl uppercase mt-4 md:mt-5 md:leading-[0.95] text-balance">
                 Mobilidade que{" "}
                 <span className="text-brand-red">respira melhor</span>.
-              </h3>
+              </h2>
               <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
                 Na Filadelfo Motors, cada bicicleta elétrica é um manifesto
                 silencioso a favor do planeta. Acreditamos que o futuro das
