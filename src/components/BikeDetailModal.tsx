@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Battery, Gauge, Zap, X, MessageCircle, Play, Weight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
@@ -12,7 +12,17 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useStructuredData } from "@/hooks/useStructuredData";
 import { buildBikeAlt } from "@/lib/bike-alt";
+
+const SITE_URL = "https://filadelfomotors.com.br";
+
+/** Convert "12.345,67" (pt-BR) → 12345.67 for JSON-LD numeric price. */
+const parseBrPrice = (s: string): number | null => {
+  if (!s) return null;
+  const n = Number(String(s).replace(/\./g, "").replace(",", "."));
+  return Number.isFinite(n) ? n : null;
+};
 
 export type BikeColor = { name: string; hex: string };
 
@@ -266,6 +276,49 @@ export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
         metaDesc.setAttribute("content", previousDesc);
     };
   }, [open, bike]);
+
+  // JSON-LD Product schema (rich snippets) — only while the modal is open.
+  const productLd = useMemo(() => {
+    if (!open || !bike) return null;
+    const priceNum = parseBrPrice(bike.price);
+    const images = (bike.gallery && bike.gallery.length > 0
+      ? bike.gallery.map((g) => g.url)
+      : [bike.image]
+    ).filter(Boolean);
+    const description =
+      bike.description?.trim() ||
+      `${bike.name} (${bike.tag}) — bicicleta elétrica Filadelfo Motors. Autonomia ${bike.specs.autonomia}, motor ${bike.specs.motor}, velocidade ${bike.specs.vel}.`;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: bike.name,
+      image: images,
+      description,
+      brand: { "@type": "Brand", name: "Filadelfo Motors" },
+      category: bike.tag,
+      ...(bike.colors && bike.colors.length > 0
+        ? { color: bike.colors.map((c) => c.name) }
+        : {}),
+      ...(priceNum !== null
+        ? {
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "BRL",
+              price: priceNum.toFixed(2),
+              availability: "https://schema.org/InStock",
+              url: `${SITE_URL}/catalogo`,
+              seller: { "@type": "Organization", name: "Filadelfo Motors" },
+            },
+          }
+        : {}),
+    } satisfies Record<string, unknown>;
+  }, [open, bike]);
+
+  useStructuredData(
+    bike ? `ld-bike-${bike.name.replace(/\s+/g, "-").toLowerCase()}` : "ld-bike",
+    productLd,
+  );
 
   if (!bike) return null;
 
