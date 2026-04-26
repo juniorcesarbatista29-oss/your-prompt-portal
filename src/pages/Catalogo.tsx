@@ -287,16 +287,47 @@ const Catalogo = () => {
 
                     <div className="p-5 md:p-6">
                       <h3 className="font-display text-xl md:text-2xl uppercase">{p.name}</h3>
+
+                      {p.colors && p.colors.length > 0 && (
+                        <div className="mt-2 flex items-center gap-1.5">
+                          {p.colors.slice(0, 5).map((c, idx) => (
+                            <span
+                              key={`${c.hex}-${idx}`}
+                              title={c.name}
+                              className="size-3 xs:size-3.5 rounded-full border border-border shadow-inner"
+                              style={{ backgroundColor: c.hex }}
+                            />
+                          ))}
+                          {p.colors.length > 5 && (
+                            <span className="text-[10px] text-muted-foreground">+{p.colors.length - 5}</span>
+                          )}
+                        </div>
+                      )}
+
                       <div className="mt-3 md:mt-4 grid grid-cols-3 gap-1.5 sm:gap-2 py-3 md:py-4 border-y border-border">
                         {Object.entries(p.specs).map(([k, v]) => (
-                          <div key={k}>
-                            <div className="text-[9px] tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground">
+                          <div key={k} className="min-w-0">
+                            <div className="text-[9px] tracking-[0.15em] sm:tracking-widest uppercase text-muted-foreground truncate leading-tight">
                               {k}
                             </div>
-                            <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-0.5 break-words">{v}</div>
+                            <div className="text-[11px] sm:text-xs md:text-sm font-semibold mt-1 leading-[1.15] tabular-nums break-words">
+                              {v}
+                            </div>
                           </div>
                         ))}
                       </div>
+
+                      {p.weightCapacity && (
+                        <div className="mt-3 flex items-baseline justify-between gap-2">
+                          <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-muted-foreground leading-tight">
+                            Peso suportado
+                          </span>
+                          <span className="text-xs sm:text-sm font-semibold text-foreground tabular-nums leading-tight">
+                            {p.weightCapacity}
+                          </span>
+                        </div>
+                      )}
+
                       <div className="mt-3 md:mt-4 flex items-end justify-between gap-3">
                         <div className="min-w-0">
                           <div className="text-[10px] tracking-widest uppercase text-muted-foreground">
