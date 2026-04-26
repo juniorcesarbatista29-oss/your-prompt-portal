@@ -42,9 +42,6 @@ const Catalogo = () => {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [maxPrice, setMaxPrice] = useState(0);
 
-  useEffect(() => {
-    document.title = "Catálogo · Filadelfo Motors";
-  }, []);
 
   const { data, isLoading } = useQuery({
     queryKey: queryKeys.bikes,
