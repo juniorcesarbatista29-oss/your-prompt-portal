@@ -41,29 +41,29 @@ export const About = () => {
 
   return (
     <section id="sobre" className="relative section-y bg-background overflow-hidden">
-      <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-12 px-4">
+      <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-12 px-4 sm:px-6">
         <div className="md:col-span-5 md:sticky md:top-32 md:self-start">
           <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium">
             Sobre nós
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 leading-[0.9] text-balance">
+          <h2 className="font-display text-[2.25rem] leading-[0.95] sm:text-5xl md:text-7xl uppercase mt-4 md:mt-5 text-balance">
             {titleA}
             {titleB && (
               <>
-                <br />
+                {" "}
                 <span className="text-brand-red">{titleB}</span>
               </>
             )}
           </h2>
-          <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base">
+          <p className="mt-5 md:mt-6 text-muted-foreground leading-relaxed text-sm md:text-base max-w-prose">
             {aboutParagraph}
           </p>
 
-          <div className="mt-8 md:mt-10 grid grid-cols-2 gap-4 md:gap-6">
+          <div className="mt-8 md:mt-10 grid grid-cols-2 gap-x-4 gap-y-6 md:gap-6">
             {stats.map((s) => (
-              <div key={s.l} className="border-t border-border pt-3 md:pt-4">
-                <div className="font-display text-3xl md:text-4xl text-foreground">{s.v}</div>
-                <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mt-1">
+              <div key={s.l} className="border-t border-border pt-3 md:pt-4 min-w-0">
+                <div className="font-display text-3xl md:text-4xl text-foreground leading-none">{s.v}</div>
+                <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mt-2 leading-tight">
                   {s.l}
                 </div>
               </div>
