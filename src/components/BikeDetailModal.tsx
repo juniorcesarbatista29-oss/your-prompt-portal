@@ -244,6 +244,29 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
 export const BikeDetailModal = ({ bike, open, onOpenChange }: Props) => {
   const isMobile = useIsMobile();
 
+  // Dynamic SEO while the bike modal is open: title pattern
+  // "[Nome do Veículo] | Filadelfo Motors" + matching meta description.
+  useEffect(() => {
+    if (!open || !bike) return;
+    const previousTitle = document.title;
+    const metaDesc = document.head.querySelector<HTMLMetaElement>(
+      'meta[name="description"]',
+    );
+    const previousDesc = metaDesc?.getAttribute("content") ?? null;
+
+    document.title = `${bike.name} | Filadelfo Motors`;
+    const desc =
+      bike.description?.trim() ||
+      `${bike.name} (${bike.tag}) — bicicleta elétrica Filadelfo Motors. Autonomia ${bike.specs.autonomia}, motor ${bike.specs.motor}, velocidade ${bike.specs.vel}. A partir de R$ ${bike.price}.`;
+    if (metaDesc) metaDesc.setAttribute("content", desc.slice(0, 160));
+
+    return () => {
+      document.title = previousTitle;
+      if (metaDesc && previousDesc !== null)
+        metaDesc.setAttribute("content", previousDesc);
+    };
+  }, [open, bike]);
+
   if (!bike) return null;
 
   if (isMobile) {
