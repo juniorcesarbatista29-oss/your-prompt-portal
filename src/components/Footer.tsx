@@ -18,7 +18,8 @@ export const Footer = () => {
   const whatsappNumber = (settings?.whatsapp_number || "5517992155535").replace(/\D/g, "");
   const phoneHref = `https://wa.me/${whatsappNumber}`;
   const email = settings?.email || "contato@filadelfomotors.com.br";
-  const address = settings?.address || "Av. Da Saudade — Novo Horizonte, SP";
+  const address = settings?.address || "Av. Da Saudade, Nº 225 — Novo Horizonte, SP";
+  const mapsUrl = settings?.maps_url || "https://maps.app.goo.gl/msPeohwmxPVEpzN86";
 
   return (
     <footer
@@ -100,9 +101,7 @@ export const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="size-4 text-foreground/60 shrink-0 mt-0.5" />
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    address,
-                  )}`}
+                  href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Ver endereço no mapa: ${address}`}

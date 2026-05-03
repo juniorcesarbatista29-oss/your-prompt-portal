@@ -243,6 +243,7 @@ export type Database = {
           facebook_url: string | null
           id: string
           instagram_url: string | null
+          maps_url: string | null
           og_image_url: string | null
           phone: string | null
           seo_description: string | null
@@ -259,6 +260,7 @@ export type Database = {
           facebook_url?: string | null
           id?: string
           instagram_url?: string | null
+          maps_url?: string | null
           og_image_url?: string | null
           phone?: string | null
           seo_description?: string | null
@@ -275,6 +277,7 @@ export type Database = {
           facebook_url?: string | null
           id?: string
           instagram_url?: string | null
+          maps_url?: string | null
           og_image_url?: string | null
           phone?: string | null
           seo_description?: string | null
