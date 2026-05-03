@@ -73,6 +73,20 @@ const Index = () => {
         longitude: -49.212673,
       },
       hasMap: mapsUrl,
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "18:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: "Saturday",
+          opens: "08:00",
+          closes: "13:00",
+        },
+      ],
       areaServed: [
         { "@type": "City", name: addressLocality },
         { "@type": "State", name: addressRegion },
