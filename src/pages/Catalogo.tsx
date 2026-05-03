@@ -151,7 +151,7 @@ const Catalogo = () => {
             </span>
             <h1
               className="font-display uppercase text-center w-full leading-[0.95] tracking-tight whitespace-nowrap"
-              style={{ fontSize: "clamp(2.5rem, 11vw, 7.5rem)" }}
+              style={{ fontSize: "clamp(2.75rem, 10.5vw, 9rem)" }}
             >
               Catálogo <span className="text-brand-red">completo.</span>
             </h1>
