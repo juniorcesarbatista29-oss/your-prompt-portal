@@ -42,8 +42,15 @@ export const OfferPopup = () => {
       return () => window.clearTimeout(t);
     }
     if (offer.mode === "on_exit") {
+      // Exit-intent só faz sentido com mouse. Em touch devices, "subir o dedo
+      // até o topo" disparava o popup sem clique nenhum — desabilitamos.
+      const isTouch =
+        typeof window !== "undefined" &&
+        (window.matchMedia?.("(hover: none)").matches ||
+          "ontouchstart" in window);
+      if (isTouch) return;
       const handler = (e: MouseEvent) => {
-        if (e.clientY <= 0) setOpen(true);
+        if (e.clientY <= 0 && !e.relatedTarget) setOpen(true);
       };
       document.addEventListener("mouseout", handler);
       return () => document.removeEventListener("mouseout", handler);
