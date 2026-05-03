@@ -188,60 +188,32 @@ const Catalogo = () => {
 
             {filtersOpen && (
               <div className="mt-6 w-full border-t border-border pt-8 animate-fade-in">
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-start">
-                  {/* Modelo */}
-                  <div className="text-left">
-                    <label className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground block mb-4">
-                      Modelo
+                <div className="max-w-md mx-auto text-left">
+                  <div className="flex items-baseline justify-between mb-4">
+                    <label className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
+                      Preço máximo
                     </label>
-                    <div className="flex flex-wrap gap-x-5 gap-y-2">
-                      {tags.map((t) => (
-                        <button
-                          key={t}
-                          type="button"
-                          onClick={() => setTag(t)}
-                          className={`relative text-xs tracking-wide uppercase pb-1 transition-colors ${
-                            tag === t
-                              ? "text-foreground after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-brand-red"
-                              : "text-muted-foreground hover:text-foreground"
-                          }`}
-                        >
-                          {t}
-                        </button>
-                      ))}
-                    </div>
+                    <span className="font-display text-lg tabular-nums">
+                      {maxPrice > 0
+                        ? `R$ ${maxPrice.toLocaleString("pt-BR")}`
+                        : "—"}
+                    </span>
                   </div>
-
-                  <div className="hidden md:block w-px self-stretch bg-border" />
-
-                  {/* Preço máximo */}
-                  <div className="text-left">
-                    <div className="flex items-baseline justify-between mb-4">
-                      <label className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
-                        Preço máximo
-                      </label>
-                      <span className="font-display text-lg tabular-nums">
-                        {maxPrice > 0
-                          ? `R$ ${maxPrice.toLocaleString("pt-BR")}`
-                          : "—"}
-                      </span>
-                    </div>
-                    <Slider
-                      value={[maxPrice]}
-                      min={priceRange.min}
-                      max={priceRange.max}
-                      step={100}
-                      onValueChange={([v]) => setMaxPrice(v)}
-                    />
-                    <div className="mt-2 flex justify-between text-[10px] tracking-widest text-muted-foreground">
-                      <span>R$ 0</span>
-                      <span>R$ {priceRange.max.toLocaleString("pt-BR")}</span>
-                    </div>
+                  <Slider
+                    value={[maxPrice]}
+                    min={priceRange.min}
+                    max={priceRange.max}
+                    step={100}
+                    onValueChange={([v]) => setMaxPrice(v)}
+                  />
+                  <div className="mt-2 flex justify-between text-[10px] tracking-widest text-muted-foreground">
+                    <span>R$ 0</span>
+                    <span>R$ {priceRange.max.toLocaleString("pt-BR")}</span>
                   </div>
                 </div>
 
                 {activeFilterCount > 0 && (
-                  <div className="mt-8 pt-5 border-t border-border flex items-center justify-between">
+                  <div className="mt-8 pt-5 border-t border-border flex items-center justify-between max-w-md mx-auto">
                     <span className="text-[11px] tracking-widest uppercase text-muted-foreground">
                       {filtered.length} resultado{filtered.length === 1 ? "" : "s"}
                     </span>
