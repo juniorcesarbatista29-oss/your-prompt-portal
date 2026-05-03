@@ -101,9 +101,7 @@ export const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="size-4 text-foreground/60 shrink-0 mt-0.5" />
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    address,
-                  )}`}
+                  href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Ver endereço no mapa: ${address}`}
