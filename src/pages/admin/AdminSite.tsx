@@ -19,6 +19,7 @@ type Settings = {
   facebook_url: string | null;
   youtube_url: string | null;
   tiktok_url: string | null;
+  maps_url: string | null;
   seo_title: string | null;
   seo_description: string | null;
   og_image_url: string | null;
@@ -33,6 +34,7 @@ const empty: Settings = {
   facebook_url: "",
   youtube_url: "",
   tiktok_url: "",
+  maps_url: "",
   seo_title: "",
   seo_description: "",
   og_image_url: "",
@@ -193,6 +195,14 @@ const AdminSite = () => {
               <Input
                 value={settings.tiktok_url ?? ""}
                 onChange={(e) => set("tiktok_url", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label>Link do Google Maps</Label>
+              <Input
+                value={settings.maps_url ?? ""}
+                onChange={(e) => set("maps_url", e.target.value)}
+                placeholder="https://maps.app.goo.gl/..."
               />
             </div>
           </div>
