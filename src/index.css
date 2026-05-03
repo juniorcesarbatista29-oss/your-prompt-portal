@@ -79,24 +79,21 @@
 
   html {
     scroll-behavior: smooth;
-    /* iOS: prevent horizontal scroll fantasma e melhora momentum */
     -webkit-text-size-adjust: 100%;
-    /* Permite scroll vertical normal — NÃO usar overflow-x:hidden no <html>
-       (quebra rolagem em Android Chrome / Samsung Internet) */
-  }
-
-  body {
-    overflow-x: clip;
-    overscroll-behavior-y: none;
-    min-height: 100svh;
+    /* NUNCA usar overflow-x:hidden no <html> — quebra rolagem em Android Chrome */
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "ss01", "cv11";
-    /* Safe area padding em landscape (notch lateral) */
+    overflow-x: clip;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+  }
+
+  /* Fallback para Android antigo sem suporte a overflow:clip */
+  @supports not (overflow: clip) {
+    body { overflow-x: hidden; }
   }
 
   ::selection {
