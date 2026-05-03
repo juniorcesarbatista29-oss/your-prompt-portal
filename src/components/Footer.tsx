@@ -145,6 +145,12 @@ export const Footer = () => {
           <span className="leading-relaxed">
             © {new Date().getFullYear()} Filadelfo Motors. Todos os direitos reservados.
           </span>
+          <Link
+            to="/privacidade"
+            className="hover:text-brand-red transition-colors"
+          >
+            Política de Privacidade
+          </Link>
         </div>
       </div>
     </footer>

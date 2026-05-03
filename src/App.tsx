@@ -13,6 +13,7 @@ import { prefetchInitialData } from "@/lib/queries";
 // Lazy-loaded routes (code-split)
 const Sobre = lazy(() => import("./pages/Sobre.tsx"));
 const Catalogo = lazy(() => import("./pages/Catalogo.tsx"));
+const Privacidade = lazy(() => import("./pages/Privacidade.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin.tsx"));
 const AdminSignup = lazy(() => import("./pages/admin/AdminSignup.tsx"));
@@ -77,6 +78,7 @@ const AnimatedRoutes = () => {
           <Route path="/" element={<Index />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/privacidade" element={<Privacidade />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/signup" element={<AdminSignup />} />
           <Route
