@@ -136,6 +136,15 @@ export const Footer = () => {
                   {email}
                 </a>
               </div>
+              <div className="flex items-start gap-3">
+                <Clock className="size-4 text-foreground/60 shrink-0 mt-0.5" />
+                <div className="leading-snug">
+                  <div>Seg–Sex: 08h–18h</div>
+                  <div>Sábado: 08h–13h</div>
+                  <meta itemProp="openingHours" content="Mo-Fr 08:00-18:00" />
+                  <meta itemProp="openingHours" content="Sa 08:00-13:00" />
+                </div>
+              </div>
             </address>
           </div>
         </div>
