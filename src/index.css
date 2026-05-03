@@ -81,11 +81,14 @@
     scroll-behavior: smooth;
     /* iOS: prevent horizontal scroll fantasma e melhora momentum */
     -webkit-text-size-adjust: 100%;
+    /* Permite scroll vertical normal — NÃO usar overflow-x:hidden no <html>
+       (quebra rolagem em Android Chrome / Samsung Internet) */
   }
 
-  html, body {
-    overflow-x: hidden;
+  body {
+    overflow-x: clip;
     overscroll-behavior-y: none;
+    min-height: 100svh;
   }
 
   body {
