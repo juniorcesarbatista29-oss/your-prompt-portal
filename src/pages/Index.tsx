@@ -43,6 +43,10 @@ const Index = () => {
 
     const mapsUrl = settings?.maps_url || "https://maps.app.goo.gl/msPeohwmxPVEpzN86";
 
+    // Normalize telephone to E.164 (+55...) — Google's preferred format
+    const rawWhats = (settings?.whatsapp_number || "5517992155535").replace(/\D/g, "");
+    const telephone = `+${rawWhats}`;
+
     return {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "CarDealer"],
@@ -50,21 +54,23 @@ const Index = () => {
       name: "Filadelfo Motors",
       url: SITE_URL,
       logo: `${SITE_URL}/og-image.jpg`,
-      image: `${SITE_URL}/og-image.jpg`,
+      image: [`${SITE_URL}/og-image.jpg`],
       description:
         "Loja de bicicletas elétricas premium em Novo Horizonte/SP. Mobilidade urbana sustentável com performance, design e tecnologia.",
-      ...(settings?.phone || settings?.whatsapp_number
-        ? {
-            telephone: settings?.phone || `+55${settings?.whatsapp_number}`,
-          }
-        : {}),
+      telephone,
       ...(settings?.email ? { email: settings.email } : {}),
       address: {
         "@type": "PostalAddress",
         streetAddress,
         addressLocality,
         addressRegion,
+        postalCode: "14965-038",
         addressCountry: "BR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -21.4718556,
+        longitude: -49.212673,
       },
       hasMap: mapsUrl,
       areaServed: [
