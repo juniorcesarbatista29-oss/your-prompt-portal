@@ -149,7 +149,10 @@ const Catalogo = () => {
             <span className="inline-block text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-medium pb-3 mb-5 border-b border-border/60">
               Coleção 2026
             </span>
-            <h1 className="font-display uppercase text-center w-full leading-[0.95] tracking-tight whitespace-nowrap text-[1.75rem] xs:text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1
+              className="font-display uppercase text-center w-full leading-[0.95] tracking-tight whitespace-nowrap"
+              style={{ fontSize: "clamp(2.5rem, 11vw, 7.5rem)" }}
+            >
               Catálogo <span className="text-brand-red">completo.</span>
             </h1>
             <p className="mt-6 sm:mt-7 max-w-md sm:max-w-xl mx-auto text-sm sm:text-base text-muted-foreground leading-relaxed px-2 text-balance">
