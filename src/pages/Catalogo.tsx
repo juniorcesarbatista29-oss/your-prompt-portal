@@ -149,8 +149,9 @@ const Catalogo = () => {
             <span className="text-[10px] sm:text-xs tracking-[0.35em] sm:tracking-[0.4em] uppercase text-muted-foreground font-medium">
               Coleção 2026
             </span>
-            <h1 className="font-display text-[2.5rem] xs:text-5xl sm:text-6xl md:text-7xl uppercase mt-3 sm:mt-4 leading-[0.95] sm:leading-[0.9] text-balance text-center w-full">
-              Catálogo <span className="text-brand-red">completo.</span>
+            <h1 className="font-display text-[2rem] xs:text-[2.25rem] sm:text-6xl md:text-7xl uppercase mt-3 sm:mt-4 leading-[1] sm:leading-[0.9] tracking-tight text-center w-full">
+              <span className="block sm:inline">Catálogo</span>{" "}
+              <span className="block sm:inline text-brand-red">completo.</span>
             </h1>
             <p className="mt-4 max-w-md sm:max-w-xl mx-auto text-sm sm:text-base text-muted-foreground leading-relaxed px-2 text-balance">
               Toda a linha Filadelfo Motors — urbanas, mopeds, mountain e dobráveis.
