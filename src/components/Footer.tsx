@@ -18,7 +18,8 @@ export const Footer = () => {
   const whatsappNumber = (settings?.whatsapp_number || "5517992155535").replace(/\D/g, "");
   const phoneHref = `https://wa.me/${whatsappNumber}`;
   const email = settings?.email || "contato@filadelfomotors.com.br";
-  const address = settings?.address || "Av. Da Saudade — Novo Horizonte, SP";
+  const address = settings?.address || "Av. Da Saudade, Nº 225 — Novo Horizonte, SP";
+  const mapsUrl = settings?.maps_url || "https://maps.app.goo.gl/msPeohwmxPVEpzN86";
 
   return (
     <footer
