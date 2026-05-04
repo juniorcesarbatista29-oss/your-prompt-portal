@@ -10,6 +10,7 @@ import Index from "./pages/Index.tsx";
 import { OfferPopup } from "./components/OfferPopup.tsx";
 import { CookieConsent } from "./components/CookieConsent.tsx";
 import { prefetchInitialData } from "@/lib/queries";
+import { useRealtimeSync } from "@/hooks/useRealtimeSync";
 
 // Lazy-loaded routes (code-split)
 const Sobre = lazy(() => import("./pages/Sobre.tsx"));
