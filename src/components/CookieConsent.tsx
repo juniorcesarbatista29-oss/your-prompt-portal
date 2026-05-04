@@ -90,10 +90,11 @@ export const CookieConsent = () => {
           role="dialog"
           aria-label="Aviso de cookies"
           aria-describedby="cookie-consent-desc"
-          className="fixed inset-x-0 bottom-0 z-[60] px-3 sm:px-5 pointer-events-none"
+          className="fixed inset-x-0 bottom-0 z-[60] pointer-events-none"
           style={{
-            paddingBottom:
-              "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)",
+            paddingLeft: "calc(env(safe-area-inset-left, 0px) + 0.75rem)",
+            paddingRight: "calc(env(safe-area-inset-right, 0px) + 0.75rem)",
+            paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)",
             paddingTop: "0.5rem",
           }}
         >
