@@ -9,6 +9,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { useCanonical } from "@/hooks/useCanonical";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useStructuredData } from "@/hooks/useStructuredData";
+import { normalizeWhatsapp } from "@/lib/whatsapp";
 
 const SITE_URL = "https://filadelfomotors.com.br";
 
