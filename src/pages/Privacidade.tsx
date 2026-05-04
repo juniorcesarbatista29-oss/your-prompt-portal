@@ -2,8 +2,14 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
 import { useCanonical } from "@/hooks/useCanonical";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { buildWhatsappUrl, formatWhatsappNational } from "@/lib/whatsapp";
 
 const Privacidade = () => {
+  const { settings } = useSiteSettings();
+  const waHref = buildWhatsappUrl(settings?.whatsapp_number);
+  const waLabel = formatWhatsappNational(settings?.whatsapp_number);
+  const email = settings?.email || "contato@filadelfomotors.com.br";
   useCanonical("/privacidade", {
     title: "Política de Privacidade | Filadelfo Motors",
     description:
