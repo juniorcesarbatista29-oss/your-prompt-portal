@@ -159,12 +159,12 @@ const Privacidade = () => {
                   <li>
                     WhatsApp:{" "}
                     <a
-                      href="https://wa.me/5517992155535"
+                      href="https://wa.me/5517996015317"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-brand-red hover:underline"
                     >
-                      (17) 99215-5535
+                      (17) 99601-5317
                     </a>
                   </li>
                 </ul>
