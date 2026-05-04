@@ -74,6 +74,7 @@ const AnimatedRoutes = () => {
   return (
     <>
     {!isAdmin && <OfferPopup />}
+    {!isAdmin && <CookieConsent />}
     <Suspense fallback={null}>
       <Routes location={location}>
           <Route path="/" element={<Index />} />
