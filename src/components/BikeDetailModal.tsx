@@ -43,8 +43,6 @@ export type Bike = {
   gallery?: { url: string; caption?: string | null }[];
 };
 
-const WHATSAPP_NUMBER = "5517996015317";
-
 type Props = {
   bike: Bike | null;
   open: boolean;
