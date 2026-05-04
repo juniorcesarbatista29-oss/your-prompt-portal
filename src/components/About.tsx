@@ -1,5 +1,6 @@
 import { Leaf, Award, Users, Recycle, Wind, TreePine } from "lucide-react";
 import { usePageContent } from "@/hooks/usePageContent";
+import { CountUp } from "@/components/CountUp";
 
 export const About = () => {
   const { t } = usePageContent("home");
@@ -60,9 +61,17 @@ export const About = () => {
           </p>
 
           <div className="mt-8 md:mt-10 grid grid-cols-2 gap-x-4 gap-y-6 md:gap-6">
-            {stats.map((s) => (
-              <div key={s.l} className="border-t border-border pt-3 md:pt-4 min-w-0">
-                <div className="font-display text-3xl md:text-4xl text-foreground leading-none">{s.v}</div>
+            {stats.map((s, i) => (
+              <div
+                key={s.l}
+                className="border-t border-border pt-3 md:pt-4 min-w-0 animate-fade-in"
+                style={{ animationDelay: `${i * 120}ms`, animationFillMode: "both" }}
+              >
+                <CountUp
+                  value={s.v}
+                  duration={1600 + i * 200}
+                  className="font-display text-3xl md:text-4xl text-foreground leading-none block"
+                />
                 <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mt-2 leading-tight">
                   {s.l}
                 </div>
