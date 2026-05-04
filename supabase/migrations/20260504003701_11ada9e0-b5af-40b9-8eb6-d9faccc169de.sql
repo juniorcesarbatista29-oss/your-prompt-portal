@@ -1,0 +1,12 @@
+ALTER TABLE public.bikes REPLICA IDENTITY FULL;
+ALTER TABLE public.bike_images REPLICA IDENTITY FULL;
+ALTER TABLE public.offers REPLICA IDENTITY FULL;
+ALTER TABLE public.page_content REPLICA IDENTITY FULL;
+ALTER TABLE public.site_settings REPLICA IDENTITY FULL;
+ALTER TABLE public.nav_links REPLICA IDENTITY FULL;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.bikes;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.bike_images;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.offers;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.page_content;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.site_settings;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.nav_links;
