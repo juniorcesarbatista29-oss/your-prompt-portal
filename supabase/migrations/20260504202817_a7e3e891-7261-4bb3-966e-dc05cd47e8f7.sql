@@ -1,0 +1,1 @@
+UPDATE public.site_settings SET phone = '(17) 99601-5317', whatsapp_number = '5517996015317';
