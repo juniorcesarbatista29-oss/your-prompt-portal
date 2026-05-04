@@ -89,55 +89,77 @@ export const CookieConsent = () => {
         <div
           role="dialog"
           aria-label="Aviso de cookies"
-          className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5 pointer-events-none"
-          style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0.75rem)" }}
+          aria-describedby="cookie-consent-desc"
+          className="fixed inset-x-0 bottom-0 z-[60] px-3 sm:px-5 pointer-events-none"
+          style={{
+            paddingBottom:
+              "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)",
+            paddingTop: "0.5rem",
+          }}
         >
-          <div className="pointer-events-auto mx-auto max-w-3xl rounded-xl border border-border bg-background/95 backdrop-blur-md shadow-2xl p-4 sm:p-5">
-            <div className="flex items-start gap-3">
-              <div className="hidden sm:flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
-                <Cookie className="size-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-display text-base sm:text-lg uppercase tracking-wide leading-tight mb-1.5">
-                  Este site usa cookies
-                </p>
-                <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">
-                  Usamos cookies para garantir o funcionamento do site, lembrar
-                  suas preferências e entender como ele é utilizado. Você pode
-                  aceitar todos ou ajustar suas preferências. Saiba mais em
-                  nossa{" "}
-                  <Link
-                    to="/privacidade"
-                    className="text-brand-red hover:underline"
-                  >
-                    Política de Privacidade
-                  </Link>
-                  .
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Button size="sm" onClick={acceptAll}>
-                    Aceitar todos
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setManageOpen(true)}
-                  >
-                    Gerenciar preferências
-                  </Button>
-                  <Button size="sm" variant="ghost" onClick={rejectOptional}>
-                    Apenas essenciais
-                  </Button>
-                </div>
-              </div>
+          <div className="pointer-events-auto mx-auto max-w-3xl rounded-2xl border border-border bg-background/95 backdrop-blur-md shadow-2xl">
+            <div className="relative p-4 sm:p-5">
               <button
                 type="button"
-                aria-label="Fechar"
+                aria-label="Fechar aviso"
                 onClick={rejectOptional}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="absolute top-3 right-3 inline-flex size-8 items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
               >
                 <X className="size-4" />
               </button>
+
+              <div className="flex items-start gap-3 pr-8">
+                <div className="hidden sm:flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
+                  <Cookie className="size-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-display text-base sm:text-lg uppercase tracking-wide leading-tight mb-1.5 flex items-center gap-2">
+                    <Cookie className="size-4 text-brand-red sm:hidden" />
+                    Este site usa cookies
+                  </p>
+                  <p
+                    id="cookie-consent-desc"
+                    className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed"
+                  >
+                    Usamos cookies para garantir o funcionamento do site,
+                    lembrar suas preferências e entender como ele é utilizado.
+                    Saiba mais na nossa{" "}
+                    <Link
+                      to="/privacidade"
+                      className="text-brand-red hover:underline"
+                    >
+                      Política de Privacidade
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <Button
+                  size="sm"
+                  onClick={acceptAll}
+                  className="w-full sm:order-3"
+                >
+                  Aceitar todos
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setManageOpen(true)}
+                  className="w-full sm:order-2"
+                >
+                  Gerenciar preferências
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={rejectOptional}
+                  className="w-full sm:order-1"
+                >
+                  Apenas essenciais
+                </Button>
+              </div>
             </div>
           </div>
         </div>
