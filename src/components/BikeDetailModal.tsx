@@ -13,7 +13,9 @@ import {
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useStructuredData } from "@/hooks/useStructuredData";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildBikeAlt } from "@/lib/bike-alt";
+import { buildWhatsappUrl, formatWhatsappNational } from "@/lib/whatsapp";
 
 const SITE_URL = "https://filadelfomotors.com.br";
 
