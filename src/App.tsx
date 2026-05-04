@@ -71,6 +71,7 @@ if (typeof window !== "undefined") {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  useRealtimeSync();
   const isAdmin = location.pathname.startsWith("/admin");
   return (
     <>
