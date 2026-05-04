@@ -41,7 +41,7 @@ export type Bike = {
   gallery?: { url: string; caption?: string | null }[];
 };
 
-const WHATSAPP_NUMBER = "5517992155535";
+const WHATSAPP_NUMBER = "5517996015317";
 
 type Props = {
   bike: Bike | null;
@@ -275,7 +275,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
           <Share2 className="size-4" /> Compartilhar
         </Button>
         <p className="mt-3 text-center text-[11px] text-muted-foreground">
-          Atendimento direto com o time de vendas · (17) 99215-5535
+          Atendimento direto com o time de vendas · (17) 99601-5317
         </p>
       </div>
     </div>

@@ -14,8 +14,8 @@ export const Footer = () => {
     { Icon: Youtube, href: settings?.youtube_url, label: "YouTube" },
   ].filter((s) => s.href);
 
-  const phone = settings?.phone || "(17) 99215-5535";
-  const whatsappNumber = (settings?.whatsapp_number || "5517992155535").replace(/\D/g, "");
+  const phone = settings?.phone || "(17) 99601-5317";
+  const whatsappNumber = (settings?.whatsapp_number || "5517996015317").replace(/\D/g, "");
   const phoneHref = `https://wa.me/${whatsappNumber}`;
   const email = settings?.email || "contato@filadelfomotors.com.br";
   const address = settings?.address || "Av. Da Saudade, Nº 225 — Novo Horizonte, SP";
