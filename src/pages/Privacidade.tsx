@@ -7,10 +7,10 @@ const Privacidade = () => {
   useCanonical("/privacidade", {
     title: "Política de Privacidade | Filadelfo Motors",
     description:
-      "Saiba como a Filadelfo Motors coleta, utiliza, armazena e protege seus dados pessoais em conformidade com a LGPD.",
+      "Entenda de forma simples como a Filadelfo Motors trata os seus dados pessoais, sempre com transparência e em conformidade com a LGPD.",
   });
 
-  const updated = "03 de maio de 2026";
+  const updated = "04 de maio de 2026";
 
   return (
     <PageTransition>
@@ -33,50 +33,49 @@ const Privacidade = () => {
             <div className="space-y-10 text-[15px] leading-relaxed text-foreground/85">
               <section>
                 <h2 className="font-display text-2xl uppercase tracking-wide mb-3 text-foreground">
-                  1. Introdução
+                  1. Sobre esta política
                 </h2>
                 <p>
-                  A <strong>Filadelfo Motors</strong> respeita a sua privacidade e
-                  está comprometida em proteger os dados pessoais dos seus
-                  usuários e clientes. Esta Política descreve como coletamos,
-                  utilizamos, armazenamos e protegemos suas informações, em
-                  conformidade com a Lei Geral de Proteção de Dados Pessoais
-                  (Lei nº 13.709/2018 — LGPD).
+                  A <strong>Filadelfo Motors</strong> valoriza a sua confiança e
+                  preza pela transparência no relacionamento com clientes e
+                  visitantes. Este documento explica, de forma simples, quais
+                  informações coletamos, como elas são utilizadas e quais são
+                  os seus direitos, sempre em conformidade com a Lei Geral de
+                  Proteção de Dados (LGPD — Lei nº 13.709/2018).
                 </p>
               </section>
 
               <section>
                 <h2 className="font-display text-2xl uppercase tracking-wide mb-3 text-foreground">
-                  2. Dados que coletamos
+                  2. Informações que coletamos
                 </h2>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
                     <strong>Dados de contato:</strong> nome, telefone, e-mail e
-                    cidade, fornecidos voluntariamente em formulários ou via
+                    cidade, fornecidos por você em formulários ou pelo
                     WhatsApp.
                   </li>
                   <li>
-                    <strong>Dados de navegação:</strong> endereço IP, tipo de
-                    dispositivo, navegador e páginas visitadas, coletados
-                    automaticamente através de cookies e ferramentas de
-                    análise.
+                    <strong>Dados de navegação:</strong> informações técnicas
+                    como tipo de dispositivo, navegador e páginas visitadas,
+                    coletadas automaticamente para melhorar a sua experiência.
                   </li>
                   <li>
-                    <strong>Dados de interação:</strong> mensagens enviadas,
-                    interesses por modelos e preferências de comunicação.
+                    <strong>Interesses:</strong> mensagens enviadas e modelos
+                    de bikes que despertaram seu interesse.
                   </li>
                 </ul>
               </section>
 
               <section>
                 <h2 className="font-display text-2xl uppercase tracking-wide mb-3 text-foreground">
-                  3. Como utilizamos seus dados
+                  3. Como usamos suas informações
                 </h2>
                 <p>
-                  Utilizamos suas informações para responder solicitações,
-                  apresentar produtos, enviar ofertas relevantes, melhorar a
-                  experiência no site e cumprir obrigações legais. Não vendemos
-                  ou alugamos seus dados a terceiros.
+                  Usamos seus dados para responder ao seu contato, apresentar
+                  modelos e condições, enviar novidades relevantes e aprimorar
+                  o nosso site. Suas informações são tratadas com cuidado e
+                  nunca são vendidas a terceiros.
                 </p>
               </section>
 
@@ -85,10 +84,10 @@ const Privacidade = () => {
                   4. Compartilhamento
                 </h2>
                 <p>
-                  Seus dados podem ser compartilhados apenas com prestadores de
-                  serviço essenciais (hospedagem, comunicação, analytics) que
-                  seguem padrões adequados de segurança, ou quando exigido por
-                  autoridades competentes.
+                  Compartilhamos dados apenas com parceiros essenciais para o
+                  funcionamento do site e do nosso atendimento (como serviços
+                  de hospedagem, comunicação e análise), todos comprometidos
+                  com a confidencialidade das suas informações.
                 </p>
               </section>
 
@@ -97,10 +96,10 @@ const Privacidade = () => {
                   5. Cookies
                 </h2>
                 <p>
-                  Utilizamos cookies para garantir o funcionamento do site,
-                  lembrar preferências e medir o desempenho de páginas. Você
-                  pode desativá-los nas configurações do seu navegador, ciente
-                  de que isso pode afetar a experiência de uso.
+                  Utilizamos cookies para que o site funcione corretamente,
+                  lembrar suas preferências e entender quais conteúdos são
+                  mais úteis. Você pode gerenciá-los a qualquer momento nas
+                  configurações do seu navegador.
                 </p>
               </section>
 
@@ -109,11 +108,11 @@ const Privacidade = () => {
                   6. Seus direitos
                 </h2>
                 <p>
-                  Conforme a LGPD, você pode solicitar a qualquer momento:
-                  confirmação do tratamento, acesso, correção, anonimização,
-                  portabilidade ou exclusão dos seus dados, bem como revogar o
-                  consentimento. Para exercer seus direitos, entre em contato
-                  pelo e-mail abaixo.
+                  Você é o titular dos seus dados e pode, quando quiser,
+                  solicitar acesso, correção, atualização, portabilidade ou
+                  exclusão das suas informações, bem como retirar o seu
+                  consentimento. Basta entrar em contato pelos canais abaixo —
+                  o atendimento é simples e sem burocracia.
                 </p>
               </section>
 
@@ -122,31 +121,30 @@ const Privacidade = () => {
                   7. Segurança
                 </h2>
                 <p>
-                  Adotamos medidas técnicas e administrativas para proteger
-                  seus dados contra acessos não autorizados, perda, alteração
-                  ou destruição. Ainda assim, nenhum sistema é 100% seguro, e
-                  recomendamos cautela ao compartilhar informações pessoais.
+                  Adotamos boas práticas técnicas e organizacionais para
+                  manter as suas informações protegidas e acessíveis apenas a
+                  quem precisa utilizá-las no atendimento ao cliente.
                 </p>
               </section>
 
               <section>
                 <h2 className="font-display text-2xl uppercase tracking-wide mb-3 text-foreground">
-                  8. Alterações
+                  8. Atualizações
                 </h2>
                 <p>
-                  Esta Política pode ser atualizada periodicamente. A versão
-                  vigente estará sempre disponível nesta página, com a data da
-                  última atualização indicada no topo.
+                  Esta política pode ser atualizada de tempos em tempos para
+                  refletir melhorias no site ou novas exigências legais. A
+                  versão mais recente estará sempre disponível nesta página.
                 </p>
               </section>
 
               <section>
                 <h2 className="font-display text-2xl uppercase tracking-wide mb-3 text-foreground">
-                  9. Contato
+                  9. Fale com a gente
                 </h2>
                 <p>
-                  Para dúvidas sobre esta Política ou sobre o tratamento dos
-                  seus dados, fale conosco:
+                  Se tiver qualquer dúvida sobre esta política ou sobre o uso
+                  dos seus dados, é só falar com a gente:
                 </p>
                 <ul className="mt-3 space-y-1">
                   <li>
@@ -158,7 +156,17 @@ const Privacidade = () => {
                       contato@filadelfomotors.com.br
                     </a>
                   </li>
-                  <li>WhatsApp: (17) 99215-5535</li>
+                  <li>
+                    WhatsApp:{" "}
+                    <a
+                      href="https://wa.me/5517992155535"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-red hover:underline"
+                    >
+                      (17) 99215-5535
+                    </a>
+                  </li>
                 </ul>
               </section>
             </div>
