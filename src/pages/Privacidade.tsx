@@ -159,7 +159,7 @@ const Privacidade = () => {
                   <li>
                     WhatsApp:{" "}
                     <a
-                      href="https://wa.me/17996015317"
+                      href="https://wa.me/5517996015317"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-brand-red hover:underline"
