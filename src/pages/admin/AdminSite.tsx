@@ -134,7 +134,7 @@ const AdminSite = () => {
               <Input
                 value={settings.whatsapp_number ?? ""}
                 onChange={(e) => set("whatsapp_number", e.target.value)}
-                placeholder="17996015317"
+                placeholder="5517996015317"
               />
             </div>
             <div>

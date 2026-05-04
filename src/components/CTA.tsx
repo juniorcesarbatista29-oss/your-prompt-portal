@@ -11,7 +11,7 @@ export const CTA = () => {
     "cta_subtitle",
     "Leve sua bike elétrica em até 24x no cartão. Últimas unidades da coleção — não fique de fora."
   );
-  const whatsapp = (settings?.whatsapp_number || "17996015317").replace(/\D/g, "");
+  const whatsapp = (settings?.whatsapp_number || "5517996015317").replace(/\D/g, "");
   const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(
     "Gostaria de falar com um vendedor"
   )}`;
