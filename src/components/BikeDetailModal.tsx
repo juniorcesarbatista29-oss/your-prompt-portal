@@ -73,10 +73,10 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
   };
 
   const colorMsg = selectedColor ? ` na cor ${selectedColor}` : "";
-  const message = encodeURIComponent(
+  const waUrl = buildWhatsappUrl(
+    settings?.whatsapp_number,
     `Olá! Tenho interesse na bicicleta elétrica ${bike.name} (${bike.tag})${colorMsg}. Pode me passar mais informações?`,
   );
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
   const activeCaption = gallery[Math.min(activeIdx, gallery.length - 1)]?.caption;
 
