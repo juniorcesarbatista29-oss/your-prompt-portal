@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useNavLinks } from "@/hooks/useNavLinks";
+import { buildWhatsappUrl, formatWhatsappNational } from "@/lib/whatsapp";
 
 export const Footer = () => {
   const { settings } = useSiteSettings();
@@ -14,9 +15,8 @@ export const Footer = () => {
     { Icon: Youtube, href: settings?.youtube_url, label: "YouTube" },
   ].filter((s) => s.href);
 
-  const phone = settings?.phone || "(17) 99601-5317";
-  const whatsappNumber = (settings?.whatsapp_number || "5517996015317").replace(/\D/g, "");
-  const phoneHref = `https://wa.me/${whatsappNumber}`;
+  const phone = settings?.phone || formatWhatsappNational(settings?.whatsapp_number);
+  const phoneHref = buildWhatsappUrl(settings?.whatsapp_number);
   const email = settings?.email || "contato@filadelfomotors.com.br";
   const address = settings?.address || "Av. Da Saudade, Nº 225 — Novo Horizonte, SP";
   const mapsUrl = settings?.maps_url || "https://maps.app.goo.gl/msPeohwmxPVEpzN86";
