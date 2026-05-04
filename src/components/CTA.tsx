@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePageContent } from "@/hooks/usePageContent";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { buildWhatsappUrl } from "@/lib/whatsapp";
 
 export const CTA = () => {
   const { t } = usePageContent("home");
@@ -11,10 +12,7 @@ export const CTA = () => {
     "cta_subtitle",
     "Leve sua bike elétrica em até 24x no cartão. Últimas unidades da coleção — não fique de fora."
   );
-  const whatsapp = (settings?.whatsapp_number || "5517996015317").replace(/\D/g, "");
-  const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(
-    "Gostaria de falar com um vendedor"
-  )}`;
+  const waUrl = buildWhatsappUrl(settings?.whatsapp_number, "Gostaria de falar com um vendedor");
 
   return (
     <section

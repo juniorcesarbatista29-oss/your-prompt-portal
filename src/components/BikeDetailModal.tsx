@@ -13,7 +13,9 @@ import {
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useStructuredData } from "@/hooks/useStructuredData";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildBikeAlt } from "@/lib/bike-alt";
+import { buildWhatsappUrl, formatWhatsappNational } from "@/lib/whatsapp";
 
 const SITE_URL = "https://filadelfomotors.com.br";
 
@@ -41,8 +43,6 @@ export type Bike = {
   gallery?: { url: string; caption?: string | null }[];
 };
 
-const WHATSAPP_NUMBER = "5517996015317";
-
 type Props = {
   bike: Bike | null;
   open: boolean;
@@ -50,6 +50,7 @@ type Props = {
 };
 
 const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
+  const { settings } = useSiteSettings();
   const gallery = bike.gallery && bike.gallery.length > 0 ? bike.gallery : [{ url: bike.image, caption: null }];
   const colors = bike.colors ?? [];
   const [activeIdx, setActiveIdx] = useState(0);
@@ -72,10 +73,10 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
   };
 
   const colorMsg = selectedColor ? ` na cor ${selectedColor}` : "";
-  const message = encodeURIComponent(
+  const waUrl = buildWhatsappUrl(
+    settings?.whatsapp_number,
     `Olá! Tenho interesse na bicicleta elétrica ${bike.name} (${bike.tag})${colorMsg}. Pode me passar mais informações?`,
   );
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
   const activeCaption = gallery[Math.min(activeIdx, gallery.length - 1)]?.caption;
 
@@ -275,7 +276,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
           <Share2 className="size-4" /> Compartilhar
         </Button>
         <p className="mt-3 text-center text-[11px] text-muted-foreground">
-          Atendimento direto com o time de vendas · (17) 99601-5317
+          Atendimento direto com o time de vendas · {formatWhatsappNational(settings?.whatsapp_number)}
         </p>
       </div>
     </div>
