@@ -8,6 +8,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
 import { OfferPopup } from "./components/OfferPopup.tsx";
+import { CookieConsent } from "./components/CookieConsent.tsx";
 import { prefetchInitialData } from "@/lib/queries";
 
 // Lazy-loaded routes (code-split)
