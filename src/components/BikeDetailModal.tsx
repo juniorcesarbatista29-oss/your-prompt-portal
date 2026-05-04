@@ -50,6 +50,7 @@ type Props = {
 };
 
 const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
+  const { settings } = useSiteSettings();
   const gallery = bike.gallery && bike.gallery.length > 0 ? bike.gallery : [{ url: bike.image, caption: null }];
   const colors = bike.colors ?? [];
   const [activeIdx, setActiveIdx] = useState(0);
