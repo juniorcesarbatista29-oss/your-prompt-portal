@@ -276,7 +276,7 @@ const SpecsAndCTA = ({ bike }: { bike: Bike }) => {
           <Share2 className="size-4" /> Compartilhar
         </Button>
         <p className="mt-3 text-center text-[11px] text-muted-foreground">
-          Atendimento direto com o time de vendas · (17) 99601-5317
+          Atendimento direto com o time de vendas · {formatWhatsappNational(settings?.whatsapp_number)}
         </p>
       </div>
     </div>
