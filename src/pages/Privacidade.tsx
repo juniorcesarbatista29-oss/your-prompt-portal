@@ -156,21 +156,21 @@ const Privacidade = () => {
                   <li>
                     E-mail:{" "}
                     <a
-                      href="mailto:contato@filadelfomotors.com.br"
+                      href={`mailto:${email}`}
                       className="text-brand-red hover:underline"
                     >
-                      contato@filadelfomotors.com.br
+                      {email}
                     </a>
                   </li>
                   <li>
                     WhatsApp:{" "}
                     <a
-                      href="https://wa.me/5517996015317"
+                      href={waHref}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-brand-red hover:underline"
                     >
-                      (17) 99601-5317
+                      {waLabel}
                     </a>
                   </li>
                 </ul>
