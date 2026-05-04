@@ -44,8 +44,7 @@ const Index = () => {
     const mapsUrl = settings?.maps_url || "https://maps.app.goo.gl/msPeohwmxPVEpzN86";
 
     // Normalize telephone to E.164 (+55...) — Google's preferred format
-    const rawWhats = (settings?.whatsapp_number || "5517996015317").replace(/\D/g, "");
-    const telephone = `+${rawWhats}`;
+    const telephone = `+${normalizeWhatsapp(settings?.whatsapp_number)}`;
 
     return {
       "@context": "https://schema.org",
