@@ -1,0 +1,1 @@
+UPDATE public.site_settings SET maps_url='https://www.google.com/maps/place/21%C2%B028''18.3%22S+49%C2%B012''57.9%22W/@-21.471743,-49.21609,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-21.471743!4d-49.21609?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D';
